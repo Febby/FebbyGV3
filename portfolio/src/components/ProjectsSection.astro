@@ -1,0 +1,19 @@
+---
+// Section for listing projects. Accepts a 'projects' prop.
+const { projects = [] } = Astro.props;
+import ProjectCard from './ProjectCard.astro';
+---
+<section id="projects" class="py-16 px-4 bg-gray-50">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-8">Projects</h2>
+    {projects.length > 0 ? (
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {projects.map((project) => (
+          <ProjectCard project={project} />
+        ))}
+      </div>
+    ) : (
+      <p class="text-center text-gray-600">No projects available. Connect your CMS or add projects manually.</p>
+    )}
+  </div>
+</section>

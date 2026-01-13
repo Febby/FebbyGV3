@@ -1,0 +1,18 @@
+---
+// Home page of the portfolio. It imports content from the CMS and renders
+// the Hero, About, Projects and Contact sections within the base layout.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import AboutSection from '../components/AboutSection.astro';
+import ProjectsSection from '../components/ProjectsSection.astro';
+import ContactSection from '../components/ContactSection.astro';
+import { getProjects } from '../lib/cms.js';
+
+const projects = await getProjects();
+---
+<BaseLayout title="Febby Gunawan – Front‑End Developer & Support Engineer">
+  <Hero />
+  <AboutSection />
+  <ProjectsSection projects={projects} />
+  <ContactSection />
+</BaseLayout>
