@@ -1,0 +1,44 @@
+---
+// Blog section — rendered from src/data/content.js blogPosts array.
+// Slugs link to /blog/[slug] — wire up once the /blog project is integrated.
+import { blogPosts } from '../data/content.js';
+
+function formatDate(dateStr) {
+  return new Date(dateStr).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+---
+<section id="blog" class="py-24 px-4 bg-gray-50">
+  <div class="max-w-6xl mx-auto">
+    <span class="section-label text-center">Blog</span>
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-3 text-gray-900">From the Blog</h2>
+    <p class="text-center text-gray-400 mb-14 max-w-lg mx-auto text-sm md:text-base">
+      Practical articles on Shopify, JavaScript, and front-end development.
+    </p>
+    <div class="grid gap-5 sm:grid-cols-2">
+      {blogPosts.map((post) => (
+        <article class="bg-white rounded-2xl p-7 border border-gray-100 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 flex flex-col">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="text-xs font-semibold uppercase tracking-wide text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full">
+              {post.category}
+            </span>
+            <time class="text-xs text-gray-400" datetime={post.date}>
+              {formatDate(post.date)}
+            </time>
+          </div>
+          <h3 class="text-base font-semibold text-gray-900 mb-2 leading-snug">{post.title}</h3>
+          <p class="text-gray-400 text-sm leading-relaxed flex-1">{post.excerpt}</p>
+          <a
+            href={`/blog/${post.slug}`}
+            class="mt-5 text-sm font-semibold text-blue-600 hover:text-blue-800 transition-colors self-start"
+          >
+            Read more &rarr;
+          </a>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

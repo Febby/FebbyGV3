@@ -1,0 +1,22 @@
+---
+// Services section — rendered from src/data/content.js services array.
+import { services } from '../data/content.js';
+---
+<section id="services" class="py-24 px-4 bg-gray-50">
+  <div class="max-w-6xl mx-auto">
+    <span class="section-label text-center">Services</span>
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-3 text-gray-900">What I Can Help With</h2>
+    <p class="text-center text-gray-400 mb-14 max-w-lg mx-auto text-sm md:text-base">
+      From Shopify troubleshooting to full front-end builds — here is where I can add value.
+    </p>
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {services.map((service) => (
+        <div class="group bg-white rounded-2xl p-7 border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200">
+          <div class="text-4xl mb-5">{service.icon}</div>
+          <h3 class="text-base font-semibold text-gray-900 mb-2">{service.title}</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">{service.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

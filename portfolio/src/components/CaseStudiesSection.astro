@@ -1,0 +1,41 @@
+---
+// Case studies section — rendered from src/data/content.js caseStudies array.
+import { caseStudies } from '../data/content.js';
+---
+<section id="projects" class="py-24 px-4 bg-white">
+  <div class="max-w-6xl mx-auto">
+    <span class="section-label text-center">Work</span>
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-3 text-gray-900">Case Studies</h2>
+    <p class="text-center text-gray-400 mb-14 max-w-lg mx-auto text-sm md:text-base">
+      Real problems, practical solutions, and what was learned along the way.
+    </p>
+    <div class="grid gap-6 md:grid-cols-2">
+      {caseStudies.map((study) => (
+        <div class="bg-gray-50 rounded-2xl p-7 border border-gray-100 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 flex flex-col">
+          <h3 class="text-lg font-semibold text-gray-900 mb-5">{study.title}</h3>
+          <div class="space-y-4 mb-6 flex-1">
+            <div class="pl-3 border-l-2 border-blue-200">
+              <span class="text-xs font-semibold uppercase tracking-wide text-blue-600">Problem</span>
+              <p class="text-gray-500 text-sm mt-1 leading-relaxed">{study.problem}</p>
+            </div>
+            <div class="pl-3 border-l-2 border-green-200">
+              <span class="text-xs font-semibold uppercase tracking-wide text-green-600">Solution</span>
+              <p class="text-gray-500 text-sm mt-1 leading-relaxed">{study.solution}</p>
+            </div>
+            <div class="pl-3 border-l-2 border-purple-200">
+              <span class="text-xs font-semibold uppercase tracking-wide text-purple-600">Outcome</span>
+              <p class="text-gray-500 text-sm mt-1 leading-relaxed">{study.outcome}</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-2 pt-4 border-t border-gray-100">
+            {study.tech.map((tag) => (
+              <span class="px-2.5 py-1 text-xs font-medium bg-white border border-gray-200 text-gray-500 rounded-full">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

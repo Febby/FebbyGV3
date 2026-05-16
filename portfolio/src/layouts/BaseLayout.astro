@@ -14,21 +14,27 @@ const { title = 'Febby Gunawan Portfolio' } = Astro.props;
     <title>{title}</title>
   </head>
   <body class="flex flex-col min-h-screen">
-    <header class="sticky top-0 z-10 bg-white/70 backdrop-blur shadow-sm">
-      <nav class="max-w-6xl mx-auto flex items-center justify-between p-4">
-        <a href="/" class="text-xl font-semibold">Febby G.</a>
-        <ul class="flex space-x-6 text-sm">
-          <li><a href="#about" class="hover:text-blue-600">About</a></li>
-          <li><a href="#projects" class="hover:text-blue-600">Projects</a></li>
-          <li><a href="#contact" class="hover:text-blue-600">Contact</a></li>
+    <header class="sticky top-0 z-20 bg-white/80 backdrop-blur-md border-b border-gray-100">
+      <nav class="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
+        <a href="/" class="text-base font-bold tracking-tight text-gray-900 hover:text-blue-600 transition-colors">Febby G.</a>
+        <ul class="flex items-center gap-6 text-sm font-medium text-gray-600">
+          <li><a href="#about" class="hover:text-blue-600 transition-colors">About</a></li>
+          <li><a href="#services" class="hover:text-blue-600 transition-colors">Services</a></li>
+          <li><a href="#projects" class="hover:text-blue-600 transition-colors">Work</a></li>
+          <li><a href="#blog" class="hover:text-blue-600 transition-colors">Blog</a></li>
+          <li>
+            <a href="#contact" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+              Contact
+            </a>
+          </li>
         </ul>
       </nav>
     </header>
     <main class="flex-1">
       <slot />
     </main>
-    <footer class="py-6 text-center text-sm text-gray-500">
-      © {new Date().getFullYear()} Febby Gunawan. All rights reserved.
+    <footer class="py-8 border-t border-gray-100 text-center text-sm text-gray-400">
+      © {new Date().getFullYear()} Febby Gunawan. Built with Astro &amp; Tailwind.
     </footer>
   </body>
 </html>
