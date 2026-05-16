@@ -2,24 +2,22 @@
 // Skills section — rendered from src/data/content.js skillGroups array.
 import { skillGroups } from '../data/content.js';
 ---
-<section id="skills" class="py-24 px-4 bg-gray-50">
+<section id="skills" class="py-24 px-4 bg-surface">
   <div class="max-w-6xl mx-auto">
-    <span class="section-label text-center">Skills</span>
-    <h2 class="text-3xl md:text-4xl font-bold text-center mb-3 text-gray-900">Skills & Tools</h2>
-    <p class="text-center text-gray-400 mb-14 max-w-lg mx-auto text-sm md:text-base">
+    <span class="section-label">Skills</span>
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-3 text-theme">Skills & Tools</h2>
+    <p class="text-center text-muted mb-14 max-w-lg mx-auto text-sm md:text-base">
       Technologies, tools, and areas I work in regularly.
     </p>
     <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {skillGroups.map((group) => (
-        <div class="bg-white rounded-2xl p-7 border border-gray-100 hover:shadow-md transition-shadow">
-          <h3 class="text-xs font-semibold uppercase tracking-widest text-blue-600 mb-4">
+        <div class="card">
+          <h3 class="text-xs font-semibold uppercase tracking-widest text-accent mb-4">
             {group.title}
           </h3>
           <div class="flex flex-wrap gap-2">
             {group.skills.map((skill) => (
-              <span class="px-3 py-1 text-xs font-medium text-gray-600 bg-gray-100 rounded-full">
-                {skill}
-              </span>
+              <span class="tag">{skill}</span>
             ))}
           </div>
         </div>

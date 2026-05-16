@@ -3,30 +3,30 @@
 // Update status from 'coming-soon' to 'available' and add a link when ready.
 import { resources } from '../data/content.js';
 ---
-<section id="resources" class="py-24 px-4 bg-white">
+<section id="resources" class="py-24 px-4 bg-page">
   <div class="max-w-6xl mx-auto">
-    <span class="section-label text-center">Resources</span>
-    <h2 class="text-3xl md:text-4xl font-bold text-center mb-3 text-gray-900">Resources & Tools</h2>
-    <p class="text-center text-gray-400 mb-14 max-w-lg mx-auto text-sm md:text-base">
+    <span class="section-label">Resources</span>
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-3 text-theme">Resources & Tools</h2>
+    <p class="text-center text-muted mb-14 max-w-lg mx-auto text-sm md:text-base">
       Guides, checklists, and templates I am putting together for developers and Shopify merchants.
     </p>
     <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {resources.map((resource) => (
-        <div class="bg-gray-50 rounded-2xl p-7 border border-gray-100 flex flex-col gap-3">
+        <div class="card flex flex-col gap-3">
           <div class="flex items-start justify-between gap-2">
-            <h3 class="text-base font-semibold text-gray-900 leading-snug">{resource.title}</h3>
+            <h3 class="text-base font-semibold text-theme leading-snug">{resource.title}</h3>
             {resource.status === 'coming-soon' && (
-              <span class="shrink-0 text-xs font-medium bg-amber-100 text-amber-700 px-2.5 py-1 rounded-full">
+              <span class="shrink-0 text-xs font-medium px-2.5 py-1 rounded-full" style="background-color: rgba(245,158,11,0.15); color: #f59e0b;">
                 Coming soon
               </span>
             )}
             {resource.status === 'available' && (
-              <span class="shrink-0 text-xs font-medium bg-green-100 text-green-700 px-2.5 py-1 rounded-full">
+              <span class="shrink-0 text-xs font-medium px-2.5 py-1 rounded-full" style="background-color: rgba(52,211,153,0.15); color: #34d399;">
                 Available
               </span>
             )}
           </div>
-          <p class="text-gray-400 text-sm leading-relaxed flex-1">{resource.description}</p>
+          <p class="text-muted text-sm leading-relaxed flex-1">{resource.description}</p>
         </div>
       ))}
     </div>
