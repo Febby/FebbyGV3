@@ -9,7 +9,7 @@ My personal portfolio site — still a work in progress. Built with Astro and Ta
 
 ## Tech stack
 
-- **Astro** for the static site foundation
+- **Astro** for the static site foundationn
 - **Tailwind CSS** for styling (v3 in the portfolio, v4 in the blog)
 - **React** only in the blog for interactive bits
 - **Octokit** for pulling GitHub data into the blog
