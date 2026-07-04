@@ -40,53 +40,53 @@ export const services = [
 export const caseStudies = [
   {
     title: 'Resolving Shopify Cart Drawer Conflicts',
-    problem:
-      'A merchant\'s cart drawer stopped opening after a third-party upsell app was installed. No visible error was shown in the storefront, making it harder to diagnose.',
-    solution:
-      'I investigated the browser console and identified a JavaScript event listener collision between the theme and the app embed script. The approach was to isolate the conflicting function and adjust the initialization order.',
+    context:
+      'After a third-party upsell app was installed, the theme\'s cart drawer stopped opening. Add-to-cart appeared to work, but customers got no visual feedback and were adding the same item multiple times.',
+    approach:
+      'I reproduced the issue on mobile and desktop, then used the browser console and breakpoints to trace the execution order. The theme\'s cart drawer initializer was being overridden by the app\'s asynchronous embed script. I isolated the conflicting listener and adjusted the initialization sequence so both scripts could coexist.',
     outcome:
-      'This helped restore the cart drawer to working order while keeping the upsell app active. The merchant was unblocked and the issue was documented for future reference.',
-    tech: ['Shopify', 'JavaScript', 'Theme Customization', 'Browser DevTools'],
+      'Cart drawer opened reliably again and duplicate cart additions dropped. The merchant could keep the upsell app running, and I documented the root cause for the support team.',
+    tech: ['Shopify Themes', 'Liquid', 'JavaScript', 'App Embeds', 'Browser DevTools'],
   },
   {
-    title: 'Customizing Upsell Popup Behavior with Candy Rack',
-    problem:
-      'A store had a Candy Rack popup triggering on every page load, which was creating a disruptive experience for returning visitors.',
-    solution:
-      'I investigated the trigger logic and modified it using custom JavaScript to fire only on product pages after user interaction. A session-based flag was added to suppress repeat popups within the same visit.',
+    title: 'Customizing Candy Rack Upsell Popup Behavior',
+    context:
+      'A merchant wanted the Candy Rack upsell popup to fire only on specific product pages and not repeat within the same browsing session. The default trigger was appearing on every page load, which was disruptive for returning visitors.',
+    approach:
+      'I reviewed the trigger rules and available custom JavaScript hooks in Candy Rack, then added page-level checks and a sessionStorage flag. I also tested the popup against the theme\'s variant-change events to make sure it stayed in sync with the selected product.',
     outcome:
-      'This helped reduce the frequency of unwanted popup triggers. The merchant received fewer support complaints related to the popup behavior.',
-    tech: ['Candy Rack', 'JavaScript', 'Shopify', 'sessionStorage'],
+      'The popup now triggers in the right context only and respects the session flag. The merchant received fewer complaints about intrusive popups while keeping upsell visibility intact.',
+    tech: ['Candy Rack', 'JavaScript', 'sessionStorage', 'Shopify Liquid'],
   },
   {
-    title: 'Fixing Free Gift Validation Flow',
-    problem:
-      'A store using Gift Box had a validation issue where the free gift was appearing in the cart even when the cart total hadn\'t reached the qualifying threshold.',
-    solution:
-      'I investigated the app configuration and found a misconfigured cart value rule. The approach was to correct the settings and add a lightweight client-side validation snippet to enforce the threshold check.',
+    title: 'Fixing Gift Box Free Gift Validation',
+    context:
+      'A store running Gift Box had a free gift appearing in the cart even when the cart total hadn\'t reached the qualifying threshold. The issue resurfaced whenever customers updated quantities on the AJAX cart.',
+    approach:
+      'I checked the app\'s cart-value rules and found the threshold check was not being enforced on every cart-update event. I corrected the configuration and added a lightweight client-side validation snippet that re-evaluates the threshold after each cart change.',
     outcome:
-      'This helped bring the free gift logic in line with the intended promotion rules. The merchant was able to continue running the campaign with confidence.',
-    tech: ['Gift Box', 'Shopify', 'JavaScript', 'Liquid'],
+      'Free gift logic now matched the promotion rules consistently. The merchant could run the campaign confidently and support tickets related to unexpected gifts decreased.',
+    tech: ['Gift Box', 'Shopify AJAX Cart', 'JavaScript', 'Liquid'],
   },
   {
-    title: 'Building a Responsive React Application',
-    problem:
-      'A client needed a fast, mobile-friendly web app to showcase their services, with content that was easy to update without a full rebuild.',
-    solution:
-      'I built a single-page React application using a component-based structure, Tailwind for responsive styling, and a simple static data layer to keep content editable.',
+    title: 'Troubleshooting a Shopify App Embed on a Live Theme',
+    context:
+      'A newly installed app embed was not rendering on the live theme even though it was enabled in the theme editor. Hard-refreshing and clearing cache did not change the result.',
+    approach:
+      'I verified the embed block placement in theme.liquid, checked the app block schema and settings, and looked for conditional Liquid tags that might hide the block. I also inspected the console for CSP errors or script-loading failures and compared the behavior against a fresh theme preview.',
     outcome:
-      'This helped deliver a clean, maintainable site the client could manage themselves. The structure made future updates straightforward.',
-    tech: ['React', 'Tailwind CSS', 'JavaScript', 'Vite'],
+      'The embed rendered correctly after resolving a theme-specific conflict. I gave the merchant a short checklist to verify future app installs before reaching out to support.',
+    tech: ['Shopify App Embeds', 'Liquid', 'Theme Customization', 'Browser DevTools'],
   },
   {
-    title: 'WordPress Client Website Rebuild',
-    problem:
-      'A small business had an outdated WordPress site with slow load times, a broken mobile layout, and no clear way for visitors to get in touch.',
-    solution:
-      'I rebuilt the theme using a lightweight starter, optimized images and fonts, restructured the layout for mobile-first, and added visible CTA sections on key pages.',
+    title: 'Building a Responsive React Service Showcase',
+    context:
+      'A client needed a fast, mobile-friendly site to present their services, with content they could update without rebuilding the entire application or touching code.',
+    approach:
+      'I built a single-page React application with Vite, used Tailwind CSS for responsive styling, and structured the content as a static data layer separate from the components. I also added lazy loading for images and route-level code splitting where it helped performance.',
     outcome:
-      'This helped improve both the load time and the mobile experience. The client reported seeing more enquiries through the updated contact section.',
-    tech: ['WordPress', 'PHP', 'CSS', 'JavaScript'],
+      'The client received a clean, maintainable site and could update service details by editing a single data file. Future content changes became straightforward and did not require a developer.',
+    tech: ['React', 'Vite', 'Tailwind CSS', 'JavaScript'],
   },
 ];
 
@@ -96,7 +96,7 @@ export const blogPosts = [
     excerpt:
       'A practical walkthrough of the most common cart drawer problems in Shopify themes — from JavaScript conflicts to app embed timing issues — and how to fix them.',
     category: 'Shopify',
-    date: '2025-06-01',
+    label: 'New guide',
     slug: 'debug-shopify-cart-drawer-issues',
   },
   {
@@ -104,7 +104,7 @@ export const blogPosts = [
     excerpt:
       'A collection of reusable JavaScript snippets for common Shopify customizations: cart attribute updates, variant switching, sticky headers, and more.',
     category: 'JavaScript',
-    date: '2025-07-15',
+    label: 'New guide',
     slug: 'javascript-snippets-shopify-stores',
   },
   {
@@ -112,7 +112,7 @@ export const blogPosts = [
     excerpt:
       'What I have learned from troubleshooting hundreds of Shopify support tickets — patterns, common mistakes, and how to communicate technical fixes clearly.',
     category: 'Shopify',
-    date: '2025-08-20',
+    label: 'Field note',
     slug: 'lessons-supporting-shopify-merchants',
   },
   {
@@ -120,7 +120,7 @@ export const blogPosts = [
     excerpt:
       'How I rebuilt my portfolio using Astro and Tailwind CSS — the decisions I made, the tradeoffs, and what makes this stack great for developer portfolios.',
     category: 'Front-End',
-    date: '2025-09-10',
+    label: 'Field note',
     slug: 'fast-portfolio-modern-frontend-tools',
   },
 ];

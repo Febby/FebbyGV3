@@ -1,0 +1,45 @@
+---
+import BlogPostLayout from '../../components/BlogPostLayout.astro';
+
+const post = {
+  title: 'Lessons From Supporting Shopify Merchants',
+  description:
+    'What I have learned from troubleshooting hundreds of Shopify support tickets — patterns, common mistakes, and how to communicate technical fixes clearly.',
+  category: 'Shopify',
+};
+---
+
+<BlogPostLayout {...post}>
+  <p>
+    Supporting Shopify merchants has taught me that the best fix is not just the one that solves the problem, but the one that the merchant understands. Over hundreds of tickets, a few patterns keep showing up. This article shares the lessons that have made the biggest difference in how I approach support work.
+  </p>
+
+  <h2 class="text-2xl font-bold mt-8 mb-3 text-theme">Always reproduce before diagnosing</h2>
+  <p class="text-muted">
+    It is tempting to jump straight to a solution based on the description, but every store has a unique combination of theme, apps, and custom code. Reproducing the issue first prevents wasted effort and often reveals the real cause much earlier than code inspection alone.
+  </p>
+
+  <h2 class="text-2xl font-bold mt-8 mb-3 text-theme">Isolate third-party variables</h2>
+  <p class="text-muted">
+    The most common root causes involve apps that were recently installed or updated, browser extensions, or theme customizations. Removing variables one at a time is the fastest way to isolate a conflict. A single app embed can change how the entire page behaves.
+  </p>
+
+  <h2 class="text-2xl font-bold mt-8 mb-3 text-theme">Explain cause and fix separately</h2>
+  <p class="text-muted">
+    Merchants want to know what happened and what was done. Writing the cause and fix as two distinct sections makes the response easier to read. It also gives support teams a reference they can reuse when the same issue comes up again.
+  </p>
+
+  <h2 class="text-2xl font-bold mt-8 mb-3 text-theme">Document everything</h2>
+  <p class="text-muted">
+    Internal documentation and merchant-facing notes both save time. A short summary of the investigation, the root cause, and the solution can prevent repeat tickets and helps onboard new team members faster.
+  </p>
+
+  <h2 class="text-2xl font-bold mt-8 mb-3 text-theme">Test in context, not just locally</h2>
+  <p class="text-muted">
+    A fix that works on a preview theme might fail on the live store because of different apps, caching, or content. Always verify the fix on the actual store environment before closing a ticket.
+  </p>
+
+  <p>
+    Good support is part technical skill and part communication. When merchants understand the fix, they trust the solution more and are less likely to run into the same problem again.
+  </p>
+</BlogPostLayout>

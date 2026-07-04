@@ -3,13 +3,6 @@
 // Slugs link to /blog/[slug] — wire up once the /blog project is integrated.
 import { blogPosts } from '../data/content.js';
 
-function formatDate(dateStr) {
-  return new Date(dateStr).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
-}
 ---
 <section id="blog" class="py-24 px-4 bg-surface">
   <div class="max-w-6xl mx-auto">
@@ -25,9 +18,9 @@ function formatDate(dateStr) {
             <span class="text-xs font-semibold uppercase tracking-wide text-accent px-2.5 py-1 rounded-full" style="background-color: color-mix(in srgb, var(--color-accent) 12%, transparent);">
               {post.category}
             </span>
-            <time class="text-xs text-muted" datetime={post.date}>
-              {formatDate(post.date)}
-            </time>
+            <span class="text-xs text-muted font-medium">
+              {post.label}
+            </span>
           </div>
           <h3 class="text-base font-semibold text-theme mb-2 leading-snug">{post.title}</h3>
           <p class="text-muted text-sm leading-relaxed flex-1">{post.excerpt}</p>

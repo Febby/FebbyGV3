@@ -1,0 +1,56 @@
+---
+import BlogPostLayout from '../../components/BlogPostLayout.astro';
+
+const post = {
+  title: 'How to Debug Shopify Cart Drawer Issues',
+  description:
+    'A practical walkthrough of the most common cart drawer problems in Shopify themes — from JavaScript conflicts to app embed timing issues — and how to fix them.',
+  category: 'Shopify',
+};
+---
+
+<BlogPostLayout {...post}>
+  <p>
+    The cart drawer is one of the most important pieces of a Shopify storefront. When it stops opening, customers lose feedback after clicking “Add to cart,” which often leads to duplicate products and abandoned checkouts. This article walks through a practical debugging process that can be applied to almost any cart drawer issue.
+  </p>
+
+  <h2 class="text-2xl font-bold mt-8 mb-3 text-theme">Common causes</h2>
+  <ul class="list-disc pl-6 space-y-2 text-muted">
+    <li>Third-party apps overriding the theme’s cart drawer listener.</li>
+    <li>Asynchronous app embeds that load after the theme JavaScript has initialized.</li>
+    <li>Missing or changed DOM selectors the cart drawer depends on.</li>
+    <li>AJAX cart updates that return errors but are not handled gracefully.</li>
+  </ul>
+
+  <h2 class="text-2xl font-bold mt-8 mb-3 text-theme">A repeatable debugging flow</h2>
+  <ol class="list-decimal pl-6 space-y-3 text-muted">
+    <li>
+      <strong class="text-theme">Reproduce the issue</strong> on both mobile and desktop. Confirm whether the drawer fails on the first add-to-cart, after a variant change, or only when a specific app is active.
+    </li>
+    <li>
+      <strong class="text-theme">Open the browser console</strong> and look for JavaScript errors. Network errors from the cart AJAX endpoint can also prevent the drawer from updating.
+    </li>
+    <li>
+      <strong class="text-theme">Use breakpoints</strong> in the theme’s cart drawer code to see which event handlers fire and in what order. This is usually the fastest way to find a conflicting listener.
+    </li>
+    <li>
+      <strong class="text-theme">Isolate the conflict</strong> by disabling app embeds one at a time in the theme editor. Once the drawer works, re-enable embeds until the conflict reappears.
+    </li>
+    <li>
+      <strong class="text-theme">Fix the sequence</strong> if an app must run after the theme’s initializer. A small delay or event listener can let both scripts coexist without breaking the drawer.
+    </li>
+  </ol>
+
+  <h2 class="text-2xl font-bold mt-8 mb-3 text-theme">Quick checklist</h2>
+  <ul class="list-disc pl-6 space-y-2 text-muted">
+    <li>Check the cart drawer works on a fresh theme preview.</li>
+    <li>Verify no console errors after adding to cart.</li>
+    <li>Temporarily disable recent apps and test again.</li>
+    <li>Confirm the trigger element and selector still exist.</li>
+    <li>Document the fix so support can reuse it later.</li>
+  </ul>
+
+  <p>
+    Cart drawer problems usually come down to timing or conflicting scripts. A structured approach saves time and avoids guessing, which means the merchant can keep their apps running while the drawer works reliably again.
+  </p>
+</BlogPostLayout>

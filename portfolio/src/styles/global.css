@@ -189,6 +189,7 @@ h1, h2, h3, h4 {
 .nav-actions {
   display: flex;
   justify-content: flex-end;
+  gap: 0.5rem;
 }
 
 .theme-btn {
@@ -208,6 +209,98 @@ h1, h2, h3, h4 {
 .theme-btn:hover {
   border-color: var(--color-border);
   background-color: var(--color-surface);
+}
+
+/* Mobile menu */
+.menu-btn {
+  display: none;
+  height: 2.25rem;
+  padding: 0 0.75rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 1px solid var(--color-border);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text);
+  background: transparent;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.menu-btn:hover {
+  background-color: var(--color-surface);
+}
+
+.mobile-menu {
+  display: none;
+}
+
+.mobile-menu-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.mobile-menu-link {
+  display: block;
+  padding: 0.625rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-align: center;
+  color: var(--color-text);
+  text-decoration: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.mobile-menu-link:hover {
+  background-color: var(--color-bg);
+  color: var(--color-accent);
+}
+
+.mobile-menu-link--cta {
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+}
+
+.mobile-menu-link--cta:hover {
+  background-color: color-mix(in srgb, var(--color-accent) 10%, transparent);
+}
+
+@media (max-width: 640px) {
+  .nav-links {
+    display: none;
+  }
+
+  .menu-btn {
+    display: flex;
+  }
+
+  .mobile-menu {
+    position: absolute;
+    top: 100%;
+    left: 1rem;
+    right: 1rem;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 0.75rem;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    z-index: 50;
+  }
+
+  .mobile-menu.is-open {
+    display: block;
+  }
+
+  .dark .mobile-menu {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  }
 }
 
 /* Offset page content so it starts below the fixed nav */

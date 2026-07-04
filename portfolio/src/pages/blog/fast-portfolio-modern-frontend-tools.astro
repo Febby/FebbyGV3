@@ -1,0 +1,45 @@
+---
+import BlogPostLayout from '../../components/BlogPostLayout.astro';
+
+const post = {
+  title: 'Building a Fast Portfolio With Modern Front-End Tools',
+  description:
+    'How I rebuilt my portfolio using Astro and Tailwind CSS — the decisions I made, the tradeoffs, and what makes this stack great for developer portfolios.',
+  category: 'Front-End',
+};
+---
+
+<BlogPostLayout {...post}>
+  <p>
+    Developer portfolios are a great place to experiment with modern front-end tools because the scope is small but the requirements are real: fast loading, responsive design, easy maintenance, and good SEO. This is the approach I took when rebuilding my portfolio with Astro and Tailwind CSS.
+  </p>
+
+  <h2 class="text-2xl font-bold mt-8 mb-3 text-theme">Why static first</h2>
+  <p class="text-muted">
+    A portfolio is mostly content. Shipping static HTML means there is no server overhead, no client-side hydration for simple pages, and the site performs well on any connection. It also makes hosting and caching simple.
+  </p>
+
+  <h2 class="text-2xl font-bold mt-8 mb-3 text-theme">Choosing Astro</h2>
+  <p class="text-muted">
+    Astro lets you build with components while shipping zero JavaScript by default. That means the page loads quickly, and any interactive pieces can be added only where they are needed. It also supports Markdown and content collections, which makes writing blog posts and case studies straightforward.
+  </p>
+
+  <h2 class="text-2xl font-bold mt-8 mb-3 text-theme">Styling with Tailwind CSS</h2>
+  <p class="text-muted">
+    Tailwind made it easy to keep the design consistent and iterate quickly. Using CSS variables for colors let me support both dark and light themes with a single set of utility classes. The small utility footprint keeps the stylesheet small without needing to manage custom CSS files manually.
+  </p>
+
+  <h2 class="text-2xl font-bold mt-8 mb-3 text-theme">Keeping JavaScript minimal</h2>
+  <p class="text-muted">
+    I used plain JavaScript for the theme toggle, scroll reveal, and header scroll state. This avoids bringing in a large framework for three small interactions. The result is a site that feels smooth while staying lightweight.
+  </p>
+
+  <h2 class="text-2xl font-bold mt-8 mb-3 text-theme">Tradeoffs</h2>
+  <p class="text-muted">
+    The biggest tradeoff is that Astro is less dynamic than a full React or Next.js application. For a portfolio, that is a feature, not a bug. If the site needs a CMS, a contact form backend, or user authentication later, those can be added incrementally.
+  </p>
+
+  <p>
+    For a developer portfolio, the combination of static generation, component-based templates, and utility-first CSS hits a sweet spot. It is fast to build, fast to load, and easy to keep up to date.
+  </p>
+</BlogPostLayout>

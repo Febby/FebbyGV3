@@ -1,0 +1,79 @@
+---
+import BlogPostLayout from '../../components/BlogPostLayout.astro';
+
+const post = {
+  title: 'Useful JavaScript Snippets for Shopify Stores',
+  description:
+    'A collection of reusable JavaScript snippets for common Shopify customizations: cart attribute updates, variant switching, sticky headers, and more.',
+  category: 'JavaScript',
+};
+
+const cartSnippet = `fetch('/cart/update.js', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ attributes: { 'Gift message': 'Happy birthday!' } })
+})
+.then(response => response.json())
+.then(cart => console.log('Updated cart:', cart));`;
+
+const variantSnippet = `document.addEventListener('variant:change', function (event) {
+  const variant = event.detail.variant;
+  if (variant) {
+    console.log('Selected variant ID:', variant.id);
+  }
+});`;
+
+const stickySnippet = `window.addEventListener('scroll', function () {
+  const header = document.getElementById('site-header');
+  if (!header) return;
+  header.classList.toggle('is-sticky', window.scrollY > 80);
+}, { passive: true });`;
+
+const waitSnippet = `function waitForElement(selector, callback) {
+  const element = document.querySelector(selector);
+  if (element) return callback(element);
+
+  const observer = new MutationObserver(function () {
+    const element = document.querySelector(selector);
+    if (element) {
+      observer.disconnect();
+      callback(element);
+    }
+  });
+  observer.observe(document.body, { childList: true, subtree: true });
+}`;
+---
+
+<BlogPostLayout {...post}>
+  <p>
+    Shopify themes come with a lot of functionality out of the box, but every store has edge cases that require a small amount of custom JavaScript. The snippets below are practical, reusable, and written to work with modern Shopify themes without heavy dependencies.
+  </p>
+
+  <h2 class="text-2xl font-bold mt-8 mb-3 text-theme">Update a cart attribute</h2>
+  <p class="text-muted">
+    Cart attributes are useful for storing gift messages, delivery notes, or custom order details. Use the Shopify AJAX API to update them without reloading the page.
+  </p>
+  <pre class="overflow-x-auto p-4 rounded-lg text-sm bg-surface border border-theme" style="border-color: var(--color-border);"><code class="block text-theme"><Fragment set:html={cartSnippet} /></code></pre>
+
+  <h2 class="text-2xl font-bold mt-8 mb-3 text-theme">Listen for variant changes</h2>
+  <p class="text-muted">
+    Many product page customizations need to react when a customer selects a new variant. Shopify themes usually emit a variant change event through the option selectors.
+  </p>
+  <pre class="overflow-x-auto p-4 rounded-lg text-sm bg-surface border border-theme" style="border-color: var(--color-border);"><code class="block text-theme"><Fragment set:html={variantSnippet} /></code></pre>
+
+  <h2 class="text-2xl font-bold mt-8 mb-3 text-theme">Sticky header with scroll threshold</h2>
+  <p class="text-muted">
+    A sticky header can improve navigation on long pages, but it should not feel jumpy. Add a small scroll threshold before showing the sticky state.
+  </p>
+  <pre class="overflow-x-auto p-4 rounded-lg text-sm bg-surface border border-theme" style="border-color: var(--color-border);"><code class="block text-theme"><Fragment set:html={stickySnippet} /></code></pre>
+
+  <h2 class="text-2xl font-bold mt-8 mb-3 text-theme">Wait for an element to exist</h2>
+  <p class="text-muted">
+    App embeds and lazy-loaded content sometimes insert elements after the page has loaded. A small helper can wait for an element before running code.
+  </p>
+  <pre class="overflow-x-auto p-4 rounded-lg text-sm bg-surface border border-theme" style="border-color: var(--color-border);"><code class="block text-theme"><Fragment set:html={waitSnippet} /></code></pre>
+
+  <p>
+    These snippets are a starting point. Always test custom scripts against the theme’s existing code and keep logic small so it is easy to maintain when the theme or apps update.
+  </p>
+</BlogPostLayout>

@@ -1,0 +1,53 @@
+---
+// Reusable article wrapper for blog posts. Keeps the same theme as the rest of the site.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BlogShareButton from './BlogShareButton.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  category: string;
+}
+
+const { title, description, category } = Astro.props;
+---
+
+<BaseLayout title={`${title} | Febby Gunawan`} description={description}>
+  <article class="py-16 px-4">
+    <div class="max-w-3xl mx-auto">
+      <a
+        href="/#blog"
+        class="inline-block text-sm font-semibold text-accent hover:opacity-80 transition-opacity mb-6"
+      >
+        ← Back to blog
+      </a>
+
+      <span
+        class="inline-block text-xs font-semibold uppercase tracking-wide text-accent px-2.5 py-1 rounded-full mb-4"
+        style="background-color: color-mix(in srgb, var(--color-accent) 12%, transparent);"
+      >
+        {category}
+      </span>
+
+      <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-theme leading-tight mb-4">
+        {title}
+      </h1>
+
+      <p class="text-lg md:text-xl text-muted leading-relaxed mb-4">
+        {description}
+      </p>
+
+      <div class="flex items-center gap-3 flex-wrap">
+        <p class="text-sm text-muted">
+          Last updated July 2026
+        </p>
+        <BlogShareButton />
+      </div>
+
+      <div class="mt-10 space-y-6 text-base md:text-lg leading-relaxed text-theme">
+        <slot />
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
