@@ -13,14 +13,14 @@ function formatDate(dateStr) {
 ---
 <section id="blog" class="py-24 px-4 bg-surface">
   <div class="max-w-6xl mx-auto">
-    <span class="section-label">Blog</span>
-    <h2 class="text-3xl md:text-4xl font-bold text-center mb-3 text-theme">From the Blog</h2>
-    <p class="text-center text-muted mb-14 max-w-lg mx-auto text-sm md:text-base">
+    <span class="reveal section-label" style="--reveal-delay: 0ms">Blog</span>
+    <h2 class="reveal text-3xl md:text-4xl font-bold text-center mb-3 text-theme" style="--reveal-delay: 80ms">From the Blog</h2>
+    <p class="reveal text-center text-muted mb-14 max-w-lg mx-auto text-sm md:text-base" style="--reveal-delay: 140ms">
       Practical articles on Shopify, JavaScript, and front-end development.
     </p>
     <div class="grid gap-5 sm:grid-cols-2">
-      {blogPosts.map((post) => (
-        <article class="card flex flex-col">
+      {blogPosts.map((post, i) => (
+        <article class="reveal card flex flex-col" style={`--reveal-delay: ${200 + i * 80}ms`}>
           <div class="flex items-center gap-3 mb-4">
             <span class="text-xs font-semibold uppercase tracking-wide text-accent px-2.5 py-1 rounded-full" style="background-color: color-mix(in srgb, var(--color-accent) 12%, transparent);">
               {post.category}

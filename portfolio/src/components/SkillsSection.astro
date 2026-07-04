@@ -4,14 +4,14 @@ import { skillGroups } from '../data/content.js';
 ---
 <section id="skills" class="py-24 px-4 bg-surface">
   <div class="max-w-6xl mx-auto">
-    <span class="section-label">Skills</span>
-    <h2 class="text-3xl md:text-4xl font-bold text-center mb-3 text-theme">Skills & Tools</h2>
-    <p class="text-center text-muted mb-14 max-w-lg mx-auto text-sm md:text-base">
+    <span class="reveal section-label" style="--reveal-delay: 0ms">Skills</span>
+    <h2 class="reveal text-3xl md:text-4xl font-bold text-center mb-3 text-theme" style="--reveal-delay: 80ms">Skills & Tools</h2>
+    <p class="reveal text-center text-muted mb-14 max-w-lg mx-auto text-sm md:text-base" style="--reveal-delay: 140ms">
       Technologies, tools, and areas I work in regularly.
     </p>
     <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      {skillGroups.map((group) => (
-        <div class="card">
+      {skillGroups.map((group, i) => (
+        <div class="reveal card" style={`--reveal-delay: ${200 + i * 80}ms`}>
           <h3 class="text-xs font-semibold uppercase tracking-widest text-accent mb-4">
             {group.title}
           </h3>

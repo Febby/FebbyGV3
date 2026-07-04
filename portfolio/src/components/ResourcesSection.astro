@@ -5,14 +5,14 @@ import { resources } from '../data/content.js';
 ---
 <section id="resources" class="py-24 px-4 bg-page">
   <div class="max-w-6xl mx-auto">
-    <span class="section-label">Resources</span>
-    <h2 class="text-3xl md:text-4xl font-bold text-center mb-3 text-theme">Resources & Tools</h2>
-    <p class="text-center text-muted mb-14 max-w-lg mx-auto text-sm md:text-base">
+    <span class="reveal section-label" style="--reveal-delay: 0ms">Resources</span>
+    <h2 class="reveal text-3xl md:text-4xl font-bold text-center mb-3 text-theme" style="--reveal-delay: 80ms">Resources & Tools</h2>
+    <p class="reveal text-center text-muted mb-14 max-w-lg mx-auto text-sm md:text-base" style="--reveal-delay: 140ms">
       Guides, checklists, and templates I am putting together for developers and Shopify merchants.
     </p>
     <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      {resources.map((resource) => (
-        <div class="card flex flex-col gap-3">
+      {resources.map((resource, i) => (
+        <div class="reveal card flex flex-col gap-3" style={`--reveal-delay: ${200 + i * 70}ms`}>
           <div class="flex items-start justify-between gap-2">
             <h3 class="text-base font-semibold text-theme leading-snug">{resource.title}</h3>
             {resource.status === 'coming-soon' && (

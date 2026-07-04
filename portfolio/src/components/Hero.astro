@@ -15,20 +15,21 @@ const badges = ['Shopify', 'JavaScript', 'React', 'WordPress', 'Technical Suppor
     <img
       src={avatar.src}
       alt="Febby Gunawan"
-      class="w-28 h-28 md:w-36 md:h-36 rounded-full mx-auto mb-8 ring-4 ring-white ring-offset-2 shadow-xl object-cover"
+      class="reveal w-28 h-28 md:w-36 md:h-36 rounded-full mx-auto mb-8 ring-4 ring-white ring-offset-2 shadow-xl object-cover"
+      style="--reveal-delay: 0ms"
     />
 
-    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight text-theme mb-5">
+    <h1 class="reveal text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight text-theme mb-5" style="--reveal-delay: 100ms">
       Front-End Developer &<br class="hidden md:block" />
       <span class="text-accent">Shopify Solutions Engineer</span>
     </h1>
 
-    <p class="text-lg md:text-xl text-muted leading-relaxed max-w-xl mx-auto mb-10">
+    <p class="reveal text-lg md:text-xl text-muted leading-relaxed max-w-xl mx-auto mb-10" style="--reveal-delay: 200ms">
       I build clean, responsive websites and help eCommerce brands solve tricky
       front-end, cart, and app integration issues.
     </p>
 
-    <div class="flex flex-wrap justify-center gap-3 mb-12">
+    <div class="reveal flex flex-wrap justify-center gap-3 mb-12" style="--reveal-delay: 300ms">
       <a href="#projects" class="btn-primary">
         View Work
       </a>
@@ -48,7 +49,7 @@ const badges = ['Shopify', 'JavaScript', 'React', 'WordPress', 'Technical Suppor
       </a>
     </div>
 
-    <div class="flex flex-wrap justify-center gap-2">
+    <div class="reveal flex flex-wrap justify-center gap-2" style="--reveal-delay: 400ms">
       {badges.map((badge) => (
         <span class="tag">{badge}</span>
       ))}

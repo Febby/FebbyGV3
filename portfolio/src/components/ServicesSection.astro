@@ -4,14 +4,14 @@ import { services } from '../data/content.js';
 ---
 <section id="services" class="py-24 px-4 bg-surface">
   <div class="max-w-6xl mx-auto">
-    <span class="section-label">Services</span>
-    <h2 class="text-3xl md:text-4xl font-bold text-center mb-3 text-theme">What I Can Help With</h2>
-    <p class="text-center text-muted mb-14 max-w-lg mx-auto text-sm md:text-base">
+    <span class="reveal section-label" style="--reveal-delay: 0ms">Services</span>
+    <h2 class="reveal text-3xl md:text-4xl font-bold text-center mb-3 text-theme" style="--reveal-delay: 80ms">What I Can Help With</h2>
+    <p class="reveal text-center text-muted mb-14 max-w-lg mx-auto text-sm md:text-base" style="--reveal-delay: 140ms">
       From Shopify troubleshooting to full front-end builds — here is where I can add value.
     </p>
     <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      {services.map((service) => (
-        <div class="card">
+      {services.map((service, i) => (
+        <div class="reveal card" style={`--reveal-delay: ${200 + i * 80}ms`}>
           <div class="text-4xl mb-5">{service.icon}</div>
           <h3 class="text-base font-semibold text-theme mb-2">{service.title}</h3>
           <p class="text-muted text-sm leading-relaxed">{service.description}</p>
