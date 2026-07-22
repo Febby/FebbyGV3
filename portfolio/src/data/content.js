@@ -37,56 +37,30 @@ export const services = [
   },
 ];
 
-export const caseStudies = [
+export const projects = [
   {
-    title: 'Resolving Shopify Cart Drawer Conflicts',
-    context:
-      'After a third-party upsell app was installed, the theme\'s cart drawer stopped opening. Add-to-cart appeared to work, but customers got no visual feedback and were adding the same item multiple times.',
-    approach:
-      'I reproduced the issue on mobile and desktop, then used the browser console and breakpoints to trace the execution order. The theme\'s cart drawer initializer was being overridden by the app\'s asynchronous embed script. I isolated the conflicting listener and adjusted the initialization sequence so both scripts could coexist.',
-    outcome:
-      'Cart drawer opened reliably again and duplicate cart additions dropped. The merchant could keep the upsell app running, and I documented the root cause for the support team.',
-    tech: ['Shopify Themes', 'Liquid', 'JavaScript', 'App Embeds', 'Browser DevTools'],
+    title: 'Candy Duds',
+    description:
+      'A web-based replication of the Candy Rack app, built to showcase pop-ups and special offers. It demonstrates product upsell popups built with React, Tailwind CSS, and styled-components.',
+    tags: ['React', 'Tailwind CSS', 'Styled Components', 'Vercel'],
+    demoUrl: 'https://candy-duds-v1.vercel.app/',
+    repoUrl: 'https://github.com/Febby/candy-duds',
   },
   {
-    title: 'Customizing Candy Rack Upsell Popup Behavior',
-    context:
-      'A merchant wanted the Candy Rack upsell popup to fire only on specific product pages and not repeat within the same browsing session. The default trigger was appearing on every page load, which was disruptive for returning visitors.',
-    approach:
-      'I reviewed the trigger rules and available custom JavaScript hooks in Candy Rack, then added page-level checks and a sessionStorage flag. I also tested the popup against the theme\'s variant-change events to make sure it stayed in sync with the selected product.',
-    outcome:
-      'The popup now triggers in the right context only and respects the session flag. The merchant received fewer complaints about intrusive popups while keeping upsell visibility intact.',
-    tech: ['Candy Rack', 'JavaScript', 'sessionStorage', 'Shopify Liquid'],
+    title: 'Blogsy',
+    description:
+      'A Blog RSS engine built with Next.js that fetches and displays RSS feeds in a clean, readable interface.',
+    tags: ['Next.js', 'RSS', 'API', 'Vercel'],
+    demoUrl: 'https://blogsy.vercel.app',
+    repoUrl: 'https://github.com/Febby/Blogsy',
   },
   {
-    title: 'Fixing Gift Box Free Gift Validation',
-    context:
-      'A store running Gift Box had a free gift appearing in the cart even when the cart total hadn\'t reached the qualifying threshold. The issue resurfaced whenever customers updated quantities on the AJAX cart.',
-    approach:
-      'I checked the app\'s cart-value rules and found the threshold check was not being enforced on every cart-update event. I corrected the configuration and added a lightweight client-side validation snippet that re-evaluates the threshold after each cart change.',
-    outcome:
-      'Free gift logic now matched the promotion rules consistently. The merchant could run the campaign confidently and support tickets related to unexpected gifts decreased.',
-    tech: ['Gift Box', 'Shopify AJAX Cart', 'JavaScript', 'Liquid'],
-  },
-  {
-    title: 'Troubleshooting a Shopify App Embed on a Live Theme',
-    context:
-      'A newly installed app embed was not rendering on the live theme even though it was enabled in the theme editor. Hard-refreshing and clearing cache did not change the result.',
-    approach:
-      'I verified the embed block placement in theme.liquid, checked the app block schema and settings, and looked for conditional Liquid tags that might hide the block. I also inspected the console for CSP errors or script-loading failures and compared the behavior against a fresh theme preview.',
-    outcome:
-      'The embed rendered correctly after resolving a theme-specific conflict. I gave the merchant a short checklist to verify future app installs before reaching out to support.',
-    tech: ['Shopify App Embeds', 'Liquid', 'Theme Customization', 'Browser DevTools'],
-  },
-  {
-    title: 'Building a Responsive React Service Showcase',
-    context:
-      'A client needed a fast, mobile-friendly site to present their services, with content they could update without rebuilding the entire application or touching code.',
-    approach:
-      'I built a single-page React application with Vite, used Tailwind CSS for responsive styling, and structured the content as a static data layer separate from the components. I also added lazy loading for images and route-level code splitting where it helped performance.',
-    outcome:
-      'The client received a clean, maintainable site and could update service details by editing a single data file. Future content changes became straightforward and did not require a developer.',
-    tech: ['React', 'Vite', 'Tailwind CSS', 'JavaScript'],
+    title: 'Wizionary',
+    description:
+      'An interactive audio player built with React and powered by Vite, featuring playback controls and a responsive layout.',
+    tags: ['React', 'Vite', 'Web Audio', 'Vercel'],
+    demoUrl: 'https://wizionary-audio-player.vercel.app',
+    repoUrl: '',
   },
 ];
 

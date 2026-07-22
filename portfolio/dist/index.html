@@ -1,31 +1,161 @@
-<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Febby Gunawan – Front‑End Developer &amp; Support Engineer</title><link rel="stylesheet" href="/_astro/index.CQ-auPU3.css"></head> <body class="flex flex-col min-h-screen"> <header class="sticky top-0 z-10 bg-white/70 backdrop-blur shadow-sm"> <nav class="max-w-6xl mx-auto flex items-center justify-between p-4"> <a href="/" class="text-xl font-semibold">Febby G.</a> <ul class="flex space-x-6 text-sm"> <li><a href="#about" class="hover:text-blue-600">About</a></li> <li><a href="#projects" class="hover:text-blue-600">Projects</a></li> <li><a href="#contact" class="hover:text-blue-600">Contact</a></li> </ul> </nav> </header> <main class="flex-1">  <section class="relative flex flex-col items-center justify-center text-center min-h-[90vh] bg-cover bg-center" style="background-image: url(/_astro/background.DgmHWuMH.png);"> <div class="absolute inset-0 bg-white/60 backdrop-blur-sm"></div> <div class="relative z-10 max-w-3xl px-6 py-20"> <img src="/_astro/avatar.MjY4nsDb.png" alt="Febby Gunawan" class="w-28 h-28 md:w-36 md:h-36 rounded-full mx-auto mb-6 border-4 border-white shadow-lg object-cover"> <h1 class="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight text-gray-900 mb-4">
-Front-End Developer &<br class="hidden md:block"> <span class="text-blue-600">Shopify Solutions Engineer</span> </h1> <p class="text-lg md:text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto mb-8">
+<!DOCTYPE html><html lang="en" class="dark"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Febby Gunawan – Front-End Developer &amp; Shopify Solutions Engineer</title><!-- Anti-flicker: apply saved theme before first paint --><script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('theme');
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var isDark = saved ? saved === 'dark' : true;
+          document.documentElement.classList.toggle('dark', isDark);
+        } catch (e) {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.-wupzXMh.css"></head> <body class="flex flex-col min-h-screen"> <header id="site-header" class="site-header"> <nav class="site-nav"> <!-- Left spacer (balances toggle on right) --> <div class="nav-spacer" aria-hidden="true"></div> <!-- Center: nav links --> <ul class="nav-links"> <li><a href="/#about" class="nav-link">About</a></li> <li><a href="/#services" class="nav-link">Services</a></li> <li><a href="/#projects" class="nav-link">Work</a></li> <li><a href="/#blog" class="nav-link">Blog</a></li> <li><a href="/#contact" class="nav-link nav-link--cta">Contact</a></li> </ul> <!-- Right: theme toggle + mobile menu --> <div class="nav-actions"> <button id="theme-toggle" aria-label="Toggle theme" class="theme-btn"> <span id="theme-icon">☀️</span> </button> <button id="menu-toggle" class="menu-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu"> <span aria-hidden="true">Menu</span> </button> </div> </nav> <div id="mobile-menu" class="mobile-menu" aria-hidden="true"> <ul class="mobile-menu-links"> <li><a href="/#about" class="mobile-menu-link">About</a></li> <li><a href="/#services" class="mobile-menu-link">Services</a></li> <li><a href="/#projects" class="mobile-menu-link">Work</a></li> <li><a href="/#blog" class="mobile-menu-link">Blog</a></li> <li><a href="/#contact" class="mobile-menu-link mobile-menu-link--cta">Contact</a></li> </ul> </div> </header> <main class="flex-1">  <section class="relative flex flex-col items-center justify-center text-center min-h-[90vh] bg-cover bg-center" style="background-image: url(/_astro/background.DgmHWuMH.png);"> <div class="absolute inset-0 backdrop-blur-[6px]" style="background-color: var(--color-bg); opacity: 0.75;"></div> <div class="relative z-10 max-w-3xl px-6 py-20"> <img src="/_astro/febby-avatar.XjgXkX9r.jpg" alt="Febby Gunawan" class="reveal w-28 h-28 md:w-36 md:h-36 rounded-full mx-auto mb-8 ring-4 ring-white ring-offset-2 shadow-xl object-cover" style="--reveal-delay: 0ms"> <h1 class="reveal text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight text-theme mb-5" style="--reveal-delay: 100ms">
+Front-End Developer &<br class="hidden md:block"> <span class="text-accent">Shopify Solutions Engineer</span> </h1> <p class="reveal text-lg md:text-xl text-muted leading-relaxed max-w-xl mx-auto mb-10" style="--reveal-delay: 200ms">
 I build clean, responsive websites and help eCommerce brands solve tricky
       front-end, cart, and app integration issues.
-</p> <div class="flex flex-wrap justify-center gap-3 mb-10"> <a href="#projects" class="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors">
+</p> <div class="reveal flex flex-wrap justify-center gap-3 mb-12" style="--reveal-delay: 300ms"> <a href="#projects" class="btn-primary">
 View Work
-</a> <a href="#blog" class="px-6 py-3 bg-white text-gray-800 font-semibold rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors">
+</a> <a href="#blog" class="px-6 py-3 text-sm font-semibold rounded-full border transition-colors text-theme hover:text-accent" style="border-color: var(--color-border); background-color: var(--color-surface);">
 Read Blog
-</a> <a href="#contact" class="px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-700 transition-colors">
+</a> <a href="#contact" class="px-6 py-3 text-sm font-semibold rounded-full transition-colors text-muted hover:text-accent" style="border: 1px solid var(--color-border);">
 Work With Me
-</a> </div> <div class="flex flex-wrap justify-center gap-2"> <span class="px-3 py-1 text-sm font-medium bg-white/80 text-gray-700 border border-gray-200 rounded-full shadow-sm"> Shopify </span><span class="px-3 py-1 text-sm font-medium bg-white/80 text-gray-700 border border-gray-200 rounded-full shadow-sm"> JavaScript </span><span class="px-3 py-1 text-sm font-medium bg-white/80 text-gray-700 border border-gray-200 rounded-full shadow-sm"> React </span><span class="px-3 py-1 text-sm font-medium bg-white/80 text-gray-700 border border-gray-200 rounded-full shadow-sm"> WordPress </span><span class="px-3 py-1 text-sm font-medium bg-white/80 text-gray-700 border border-gray-200 rounded-full shadow-sm"> Technical Support </span> </div> </div> </section> <section id="about" class="py-16 px-4 bg-white"> <div class="max-w-4xl mx-auto text-center"> <h2 class="text-3xl md:text-4xl font-bold mb-6">About Me</h2> <p class="text-lg md:text-xl text-gray-700 leading-relaxed">
-I'm a front‑end developer and support engineer based in Medan, Indonesia. I enjoy crafting
-      fast, accessible websites and applications using modern technologies like Astro. With a
-      background in customer support and software engineering, I bring empathy and technical
-      expertise to every project. When I'm not coding, you can find me exploring new tools,
-      writing technical blogs or helping other developers troubleshoot their issues.
-</p> </div> </section> <section id="projects" class="py-16 px-4 bg-gray-50"> <div class="max-w-6xl mx-auto"> <h2 class="text-3xl md:text-4xl font-bold text-center mb-8">Projects</h2> <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"> <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"> <img src="/src/assets/project-placeholder.png" alt="Example Project 1" class="w-full h-40 object-cover"> <div class="p-4"> <h3 class="text-xl font-semibold mb-2">Example Project 1</h3> <p class="text-gray-600 mb-4">A sample project demonstrating Astro integration with a headless CMS. Replace this with your own project data.</p> <a href="#" class="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">
-View Project
-</a> </div> </div><div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"> <img src="/src/assets/project-placeholder.png" alt="Example Project 2" class="w-full h-40 object-cover"> <div class="p-4"> <h3 class="text-xl font-semibold mb-2">Example Project 2</h3> <p class="text-gray-600 mb-4">Another example project. Configure your CMS and update this data accordingly.</p> <a href="#" class="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">
-View Project
-</a> </div> </div><div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"> <img src="/src/assets/project-placeholder.png" alt="Example Project 3" class="w-full h-40 object-cover"> <div class="p-4"> <h3 class="text-xl font-semibold mb-2">Example Project 3</h3> <p class="text-gray-600 mb-4">Customize these cards by connecting to your CMS and populating real project data.</p> <a href="#" class="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">
-View Project
-</a> </div> </div> </div> </div> </section> <section id="contact" class="py-16 px-4 bg-white"> <div class="max-w-xl mx-auto text-center"> <h2 class="text-3xl md:text-4xl font-bold mb-4">Get in Touch</h2> <p class="text-lg text-gray-700 mb-8">
-Have a question or want to collaborate? Drop me a message and I'll get back to you soon.
-</p> <form method="POST" action="" class="space-y-4"> <div class="flex flex-col"> <label for="name" class="text-left mb-1 font-medium">Name</label> <input type="text" id="name" name="name" required class="p-3 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"> </div> <div class="flex flex-col"> <label for="email" class="text-left mb-1 font-medium">Email</label> <input type="email" id="email" name="email" required class="p-3 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"> </div> <div class="flex flex-col"> <label for="message" class="text-left mb-1 font-medium">Message</label> <textarea id="message" name="message" rows="5" required class="p-3 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"></textarea> </div> <button type="submit" class="w-full py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700">
-Send Message
-</button> </form> <p class="text-sm text-gray-500 mt-4">
-This form doesn't send anywhere yet. Configure a form handler or update the <code>action</code> to enable submissions.
-</p> </div> </section>  </main> <footer class="py-6 text-center text-sm text-gray-500">
-© 2026 Febby Gunawan. All rights reserved.
-</footer> </body></html>
+</a> </div> <div class="reveal flex flex-wrap justify-center gap-2" style="--reveal-delay: 400ms"> <span class="tag">Shopify</span><span class="tag">JavaScript</span><span class="tag">React</span><span class="tag">WordPress</span><span class="tag">Technical Support</span> </div> </div> </section> <section id="about" class="py-24 px-4 bg-page"> <div class="max-w-2xl mx-auto"> <span class="reveal section-label" style="--reveal-delay: 0ms">About</span> <h2 class="reveal text-3xl md:text-4xl font-bold text-center mb-10 text-theme" style="--reveal-delay: 80ms">A bit about me</h2> <div class="space-y-5 text-muted text-base md:text-lg leading-relaxed"> <p class="reveal" style="--reveal-delay: 160ms">
+I got into web development around 2014, mostly by pulling apart WordPress themes to see what
+        broke. That trial-and-error time with HTML, CSS, and JavaScript stuck with me longer than any
+        tutorial did.
+</p> <p class="reveal" style="--reveal-delay: 220ms">
+Since then I've worked with clients, startups, and a Shopify apps company, spending a lot of
+        time at the intersection of front-end code and merchant support. A good chunk of that was
+        diagnosing Shopify storefront issues: cart drawer conflicts, broken app embeds, checkout
+        quirks, and the kind of bugs that only appear on one browser at one screen size.
+</p> <p class="reveal" style="--reveal-delay: 280ms">
+What I find genuinely interesting is the gap between "the error exists" and "the merchant
+        understands what happened and can move forward." That translation layer from stack trace to
+        clear next step is something I've gotten a lot of practice at.
+</p> <p class="reveal" style="--reveal-delay: 340ms">
+Outside of client work, I'm building out a set of resources: debugging checklists, reusable
+        snippets, and practical guides aimed at the exact problems I've seen come up repeatedly in
+        Shopify and front-end work.
+</p> </div> </div> </section> <section id="services" class="py-24 px-4 bg-surface"> <div class="max-w-6xl mx-auto"> <span class="reveal section-label" style="--reveal-delay: 0ms">Services</span> <h2 class="reveal text-3xl md:text-4xl font-bold text-center mb-3 text-theme" style="--reveal-delay: 80ms">What I Can Help With</h2> <p class="reveal text-center text-muted mb-14 max-w-lg mx-auto text-sm md:text-base" style="--reveal-delay: 140ms">
+From Shopify troubleshooting to full front-end builds — here is where I can add value.
+</p> <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"> <div class="reveal card" style="--reveal-delay: 200ms"> <div class="text-4xl mb-5">🛒</div> <h3 class="text-base font-semibold text-theme mb-2">Shopify Troubleshooting</h3> <p class="text-muted text-sm leading-relaxed">Diagnosing and fixing cart drawer conflicts, app integration issues, theme bugs, and storefront JavaScript errors.</p> </div><div class="reveal card" style="--reveal-delay: 280ms"> <div class="text-4xl mb-5">💻</div> <h3 class="text-base font-semibold text-theme mb-2">Front-End Development</h3> <p class="text-muted text-sm leading-relaxed">Building responsive, accessible, and performant websites using HTML, CSS, JavaScript, and React.</p> </div><div class="reveal card" style="--reveal-delay: 360ms"> <div class="text-4xl mb-5">🔧</div> <h3 class="text-base font-semibold text-theme mb-2">Cart Drawer &amp; App Integration Fixes</h3> <p class="text-muted text-sm leading-relaxed">Resolving conflicts between Shopify apps (Candy Rack, Gift Box, etc.) and cart drawer or checkout flows.</p> </div><div class="reveal card" style="--reveal-delay: 440ms"> <div class="text-4xl mb-5">🎨</div> <h3 class="text-base font-semibold text-theme mb-2">Landing Pages &amp; Portfolio Websites</h3> <p class="text-muted text-sm leading-relaxed">Designing and developing clean, conversion-focused landing pages and personal portfolio sites.</p> </div><div class="reveal card" style="--reveal-delay: 520ms"> <div class="text-4xl mb-5">📝</div> <h3 class="text-base font-semibold text-theme mb-2">Technical Documentation &amp; Support Content</h3> <p class="text-muted text-sm leading-relaxed">Writing clear technical guides, troubleshooting docs, and support articles for developers and merchants.</p> </div><div class="reveal card" style="--reveal-delay: 600ms"> <div class="text-4xl mb-5">✨</div> <h3 class="text-base font-semibold text-theme mb-2">UX Improvements</h3> <p class="text-muted text-sm leading-relaxed">Identifying and fixing usability issues on eCommerce storefronts and web applications.</p> </div> </div> </div> </section> <section id="projects" class="py-24 px-4 bg-page"> <div class="max-w-6xl mx-auto"> <span class="reveal section-label" style="--reveal-delay: 0ms">Work</span> <h2 class="reveal text-3xl md:text-4xl font-bold text-center mb-3 text-theme" style="--reveal-delay: 80ms">Featured Projects</h2> <p class="reveal text-center text-muted mb-14 max-w-lg mx-auto text-sm md:text-base" style="--reveal-delay: 140ms">
+Selected GitHub projects with live demos and source code.
+</p> <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3"> <div class="reveal card flex flex-col" style="--reveal-delay: 200ms"> <h3 class="text-lg font-semibold text-theme mb-3">Candy Duds</h3> <p class="text-muted text-sm leading-relaxed mb-6 flex-1">A web-based replication of the Candy Rack app, built to showcase pop-ups and special offers. It demonstrates product upsell popups built with React, Tailwind CSS, and styled-components.</p> <div class="flex flex-wrap gap-2 mb-6"> <span class="tag">React</span><span class="tag">Tailwind CSS</span><span class="tag">Styled Components</span><span class="tag">Vercel</span> </div> <div class="flex flex-wrap gap-3 pt-4 border-t border-theme mt-auto"> <a href="https://candy-duds-v1.vercel.app/" class="btn-primary" target="_blank" rel="noopener noreferrer">
+Live Demo
+</a> <a href="https://github.com/Febby/candy-duds" class="btn-secondary" target="_blank" rel="noopener noreferrer">
+Source Code
+</a> </div> </div><div class="reveal card flex flex-col" style="--reveal-delay: 300ms"> <h3 class="text-lg font-semibold text-theme mb-3">Blogsy</h3> <p class="text-muted text-sm leading-relaxed mb-6 flex-1">A Blog RSS engine built with Next.js that fetches and displays RSS feeds in a clean, readable interface.</p> <div class="flex flex-wrap gap-2 mb-6"> <span class="tag">Next.js</span><span class="tag">RSS</span><span class="tag">API</span><span class="tag">Vercel</span> </div> <div class="flex flex-wrap gap-3 pt-4 border-t border-theme mt-auto"> <a href="https://blogsy.vercel.app" class="btn-primary" target="_blank" rel="noopener noreferrer">
+Live Demo
+</a> <a href="https://github.com/Febby/Blogsy" class="btn-secondary" target="_blank" rel="noopener noreferrer">
+Source Code
+</a> </div> </div><div class="reveal card flex flex-col" style="--reveal-delay: 400ms"> <h3 class="text-lg font-semibold text-theme mb-3">Wizionary</h3> <p class="text-muted text-sm leading-relaxed mb-6 flex-1">An interactive audio player built with React and powered by Vite, featuring playback controls and a responsive layout.</p> <div class="flex flex-wrap gap-2 mb-6"> <span class="tag">React</span><span class="tag">Vite</span><span class="tag">Web Audio</span><span class="tag">Vercel</span> </div> <div class="flex flex-wrap gap-3 pt-4 border-t border-theme mt-auto"> <a href="https://wizionary-audio-player.vercel.app" class="btn-primary" target="_blank" rel="noopener noreferrer">
+Live Demo
+</a>  </div> </div> </div> </div> </section> <section id="blog" class="py-24 px-4 bg-surface"> <div class="max-w-6xl mx-auto"> <span class="reveal section-label" style="--reveal-delay: 0ms">Blog</span> <h2 class="reveal text-3xl md:text-4xl font-bold text-center mb-3 text-theme" style="--reveal-delay: 80ms">From the Blog</h2> <p class="reveal text-center text-muted mb-14 max-w-lg mx-auto text-sm md:text-base" style="--reveal-delay: 140ms">
+Practical articles on Shopify, JavaScript, and front-end development.
+</p> <div class="grid gap-5 sm:grid-cols-2"> <article class="reveal card flex flex-col" style="--reveal-delay: 200ms"> <div class="flex items-center gap-3 mb-4"> <span class="text-xs font-semibold uppercase tracking-wide text-accent px-2.5 py-1 rounded-full" style="background-color: color-mix(in srgb, var(--color-accent) 12%, transparent);"> Shopify </span> <span class="text-xs text-muted font-medium"> New guide </span> </div> <h3 class="text-base font-semibold text-theme mb-2 leading-snug">How to Debug Shopify Cart Drawer Issues</h3> <p class="text-muted text-sm leading-relaxed flex-1">A practical walkthrough of the most common cart drawer problems in Shopify themes — from JavaScript conflicts to app embed timing issues — and how to fix them.</p> <a href="/blog/debug-shopify-cart-drawer-issues" class="mt-5 text-sm font-semibold text-accent hover:opacity-80 transition-opacity self-start">
+Read more &rarr;
+</a> </article><article class="reveal card flex flex-col" style="--reveal-delay: 280ms"> <div class="flex items-center gap-3 mb-4"> <span class="text-xs font-semibold uppercase tracking-wide text-accent px-2.5 py-1 rounded-full" style="background-color: color-mix(in srgb, var(--color-accent) 12%, transparent);"> JavaScript </span> <span class="text-xs text-muted font-medium"> New guide </span> </div> <h3 class="text-base font-semibold text-theme mb-2 leading-snug">Useful JavaScript Snippets for Shopify Stores</h3> <p class="text-muted text-sm leading-relaxed flex-1">A collection of reusable JavaScript snippets for common Shopify customizations: cart attribute updates, variant switching, sticky headers, and more.</p> <a href="/blog/javascript-snippets-shopify-stores" class="mt-5 text-sm font-semibold text-accent hover:opacity-80 transition-opacity self-start">
+Read more &rarr;
+</a> </article><article class="reveal card flex flex-col" style="--reveal-delay: 360ms"> <div class="flex items-center gap-3 mb-4"> <span class="text-xs font-semibold uppercase tracking-wide text-accent px-2.5 py-1 rounded-full" style="background-color: color-mix(in srgb, var(--color-accent) 12%, transparent);"> Shopify </span> <span class="text-xs text-muted font-medium"> Field note </span> </div> <h3 class="text-base font-semibold text-theme mb-2 leading-snug">Lessons From Supporting Shopify Merchants</h3> <p class="text-muted text-sm leading-relaxed flex-1">What I have learned from troubleshooting hundreds of Shopify support tickets — patterns, common mistakes, and how to communicate technical fixes clearly.</p> <a href="/blog/lessons-supporting-shopify-merchants" class="mt-5 text-sm font-semibold text-accent hover:opacity-80 transition-opacity self-start">
+Read more &rarr;
+</a> </article><article class="reveal card flex flex-col" style="--reveal-delay: 440ms"> <div class="flex items-center gap-3 mb-4"> <span class="text-xs font-semibold uppercase tracking-wide text-accent px-2.5 py-1 rounded-full" style="background-color: color-mix(in srgb, var(--color-accent) 12%, transparent);"> Front-End </span> <span class="text-xs text-muted font-medium"> Field note </span> </div> <h3 class="text-base font-semibold text-theme mb-2 leading-snug">Building a Fast Portfolio With Modern Front-End Tools</h3> <p class="text-muted text-sm leading-relaxed flex-1">How I rebuilt my portfolio using Astro and Tailwind CSS — the decisions I made, the tradeoffs, and what makes this stack great for developer portfolios.</p> <a href="/blog/fast-portfolio-modern-frontend-tools" class="mt-5 text-sm font-semibold text-accent hover:opacity-80 transition-opacity self-start">
+Read more &rarr;
+</a> </article> </div> </div> </section> <section id="resources" class="py-24 px-4 bg-page"> <div class="max-w-6xl mx-auto"> <span class="reveal section-label" style="--reveal-delay: 0ms">Resources</span> <h2 class="reveal text-3xl md:text-4xl font-bold text-center mb-3 text-theme" style="--reveal-delay: 80ms">Resources & Tools</h2> <p class="reveal text-center text-muted mb-14 max-w-lg mx-auto text-sm md:text-base" style="--reveal-delay: 140ms">
+Guides, checklists, and templates I am putting together for developers and Shopify merchants.
+</p> <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"> <div class="reveal card flex flex-col gap-3" style="--reveal-delay: 200ms"> <div class="flex items-start justify-between gap-2"> <h3 class="text-base font-semibold text-theme leading-snug">Shopify Debugging Checklist</h3> <span class="shrink-0 text-xs font-medium px-2.5 py-1 rounded-full" style="background-color: rgba(245,158,11,0.15); color: #f59e0b;">
+Coming soon
+</span>  </div> <p class="text-muted text-sm leading-relaxed flex-1">A step-by-step checklist for diagnosing common Shopify front-end issues: cart, apps, theme conflicts, and JavaScript errors.</p> </div><div class="reveal card flex flex-col gap-3" style="--reveal-delay: 270ms"> <div class="flex items-start justify-between gap-2"> <h3 class="text-base font-semibold text-theme leading-snug">JavaScript Snippet Library for Shopify</h3> <span class="shrink-0 text-xs font-medium px-2.5 py-1 rounded-full" style="background-color: rgba(245,158,11,0.15); color: #f59e0b;">
+Coming soon
+</span>  </div> <p class="text-muted text-sm leading-relaxed flex-1">A curated set of copy-paste JavaScript snippets for Shopify store customizations, tested and documented.</p> </div><div class="reveal card flex flex-col gap-3" style="--reveal-delay: 340ms"> <div class="flex items-start justify-between gap-2"> <h3 class="text-base font-semibold text-theme leading-snug">Portfolio Starter Template</h3> <span class="shrink-0 text-xs font-medium px-2.5 py-1 rounded-full" style="background-color: rgba(245,158,11,0.15); color: #f59e0b;">
+Coming soon
+</span>  </div> <p class="text-muted text-sm leading-relaxed flex-1">A clean Astro + Tailwind portfolio template for developers. Designed to be fast, accessible, and easy to customize.</p> </div><div class="reveal card flex flex-col gap-3" style="--reveal-delay: 410ms"> <div class="flex items-start justify-between gap-2"> <h3 class="text-base font-semibold text-theme leading-snug">Front-End Troubleshooting Guide</h3> <span class="shrink-0 text-xs font-medium px-2.5 py-1 rounded-full" style="background-color: rgba(245,158,11,0.15); color: #f59e0b;">
+Coming soon
+</span>  </div> <p class="text-muted text-sm leading-relaxed flex-1">A practical reference guide for debugging front-end issues in eCommerce stores and web applications.</p> </div><div class="reveal card flex flex-col gap-3" style="--reveal-delay: 480ms"> <div class="flex items-start justify-between gap-2"> <h3 class="text-base font-semibold text-theme leading-snug">Recommended Tools &amp; Resources</h3> <span class="shrink-0 text-xs font-medium px-2.5 py-1 rounded-full" style="background-color: rgba(245,158,11,0.15); color: #f59e0b;">
+Coming soon
+</span>  </div> <p class="text-muted text-sm leading-relaxed flex-1">The tools, extensions, and resources I use daily for front-end development, Shopify work, and productivity.</p> </div> </div> </div> </section> <section id="skills" class="py-24 px-4 bg-surface"> <div class="max-w-6xl mx-auto"> <span class="reveal section-label" style="--reveal-delay: 0ms">Skills</span> <h2 class="reveal text-3xl md:text-4xl font-bold text-center mb-3 text-theme" style="--reveal-delay: 80ms">Skills & Tools</h2> <p class="reveal text-center text-muted mb-14 max-w-lg mx-auto text-sm md:text-base" style="--reveal-delay: 140ms">
+Technologies, tools, and areas I work in regularly.
+</p> <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"> <div class="reveal card" style="--reveal-delay: 200ms"> <h3 class="text-xs font-semibold uppercase tracking-widest text-accent mb-4"> Front-End </h3> <div class="flex flex-wrap gap-2"> <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">React</span><span class="tag">Astro</span> </div> </div><div class="reveal card" style="--reveal-delay: 280ms"> <h3 class="text-xs font-semibold uppercase tracking-widest text-accent mb-4"> Styling </h3> <div class="flex flex-wrap gap-2"> <span class="tag">Tailwind CSS</span><span class="tag">SCSS</span><span class="tag">Responsive Design</span><span class="tag">CSS Grid</span><span class="tag">Flexbox</span> </div> </div><div class="reveal card" style="--reveal-delay: 360ms"> <h3 class="text-xs font-semibold uppercase tracking-widest text-accent mb-4"> Shopify </h3> <div class="flex flex-wrap gap-2"> <span class="tag">Shopify Themes</span><span class="tag">Liquid</span><span class="tag">AJAX Cart</span><span class="tag">App Embeds</span><span class="tag">Candy Rack</span><span class="tag">Gift Box</span><span class="tag">Storefront Debugging</span> </div> </div><div class="reveal card" style="--reveal-delay: 440ms"> <h3 class="text-xs font-semibold uppercase tracking-widest text-accent mb-4"> Tools </h3> <div class="flex flex-wrap gap-2"> <span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">Vercel</span><span class="tag">WordPress</span><span class="tag">VS Code</span><span class="tag">Figma</span><span class="tag">Browser DevTools</span> </div> </div><div class="reveal card" style="--reveal-delay: 520ms"> <h3 class="text-xs font-semibold uppercase tracking-widest text-accent mb-4"> Support &amp; Communication </h3> <div class="flex flex-wrap gap-2"> <span class="tag">Merchant Support</span><span class="tag">Technical Documentation</span><span class="tag">Troubleshooting</span><span class="tag">Client Communication</span> </div> </div> </div> </div> </section> <section id="contact" class="py-24 px-4" style="background-color: var(--color-surface); border-top: 1px solid var(--color-border);"> <div class="max-w-2xl mx-auto text-center"> <span class="reveal section-label" style="--reveal-delay: 0ms">Contact</span> <h2 class="reveal text-3xl md:text-4xl font-bold mb-4 text-theme" style="--reveal-delay: 80ms">
+Have a tricky Shopify or front-end issue?
+</h2> <p class="reveal text-lg text-muted leading-relaxed mb-10" style="--reveal-delay: 160ms">
+Whether it is a cart drawer conflict, app integration issue, or a website project,
+      I can help investigate the problem and explain the solution clearly.
+</p> <div class="reveal flex flex-wrap justify-center gap-4" style="--reveal-delay: 240ms"> <a href="mailto:me@febbygunawan.com" class="btn-primary">
+Email Me
+</a> <a href="https://github.com/Febby" target="_blank" rel="noopener noreferrer" class="px-6 py-3 text-sm font-semibold rounded-full border transition-colors text-theme hover:text-accent" style="border-color: var(--color-border); background-color: var(--color-bg);">
+View GitHub
+</a> <a href="https://www.linkedin.com/in/febby-gunawan-5a596026/" target="_blank" rel="noopener noreferrer" class="px-6 py-3 text-sm font-semibold rounded-full border transition-colors text-muted hover:text-accent" style="border-color: var(--color-border);">
+Connect on LinkedIn
+</a> </div> </div> </section>  </main> <footer class="py-8 border-t text-center text-sm text-muted" style="border-color: var(--color-border);">
+© 2026 Febby Gunawan. Built with Astro &amp; Tailwind.
+</footer> <script>
+      (function () {
+        var els = document.querySelectorAll('.reveal');
+        if (!els.length) return;
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12 });
+        els.forEach(function (el) { io.observe(el); });
+      })();
+    </script> <script>
+      (function () {
+        var header = document.getElementById('site-header');
+        function onScroll() {
+          header.classList.toggle('is-scrolled', window.scrollY > 20);
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+      })();
+    </script> <script>
+      (function () {
+        var btn = document.getElementById('theme-toggle');
+        var icon = document.getElementById('theme-icon');
+
+        function getIsDark() {
+          return document.documentElement.classList.contains('dark');
+        }
+
+        function updateIcon() {
+          icon.textContent = getIsDark() ? '☀️' : '🌙';
+        }
+
+        updateIcon();
+
+        btn.addEventListener('click', function () {
+          var isDark = !getIsDark();
+          document.documentElement.classList.toggle('dark', isDark);
+          try { localStorage.setItem('theme', isDark ? 'dark' : 'light'); } catch (e) {}
+          updateIcon();
+        });
+      })();
+    </script> <script>
+      (function () {
+        var toggle = document.getElementById('menu-toggle');
+        var menu = document.getElementById('mobile-menu');
+        if (!toggle || !menu) return;
+
+        function setOpen(open) {
+          toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+          menu.classList.toggle('is-open', open);
+          menu.setAttribute('aria-hidden', open ? 'false' : 'true');
+        }
+
+        toggle.addEventListener('click', function () {
+          setOpen(!menu.classList.contains('is-open'));
+        });
+
+        menu.querySelectorAll('a').forEach(function (link) {
+          link.addEventListener('click', function () {
+            setOpen(false);
+          });
+        });
+
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && menu.classList.contains('is-open')) {
+            setOpen(false);
+          }
+        });
+      })();
+    </script> </body> </html>

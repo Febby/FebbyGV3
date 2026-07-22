@@ -1,36 +1,35 @@
 ---
-// Case studies section — rendered from src/data/content.js caseStudies array.
-import { caseStudies } from '../data/content.js';
+// Featured projects section — rendered from src/data/content.js projects array.
+import { projects } from '../data/content.js';
 ---
 <section id="projects" class="py-24 px-4 bg-page">
   <div class="max-w-6xl mx-auto">
     <span class="reveal section-label" style="--reveal-delay: 0ms">Work</span>
-    <h2 class="reveal text-3xl md:text-4xl font-bold text-center mb-3 text-theme" style="--reveal-delay: 80ms">Case Studies</h2>
+    <h2 class="reveal text-3xl md:text-4xl font-bold text-center mb-3 text-theme" style="--reveal-delay: 80ms">Featured Projects</h2>
     <p class="reveal text-center text-muted mb-14 max-w-lg mx-auto text-sm md:text-base" style="--reveal-delay: 140ms">
-      Real problems, practical solutions, and what was learned along the way.
+      Selected GitHub projects with live demos and source code.
     </p>
-    <div class="grid gap-6 md:grid-cols-2">
-      {caseStudies.map((study, i) => (
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {projects.map((project, i) => (
         <div class="reveal card flex flex-col" style={`--reveal-delay: ${200 + i * 100}ms`}>
-          <h3 class="text-lg font-semibold text-theme mb-5">{study.title}</h3>
-          <div class="space-y-4 mb-6 flex-1">
-            <div class="pl-3 border-l-2 border-sky-400">
-              <span class="text-xs font-semibold uppercase tracking-wide text-accent">Context / Problem</span>
-              <p class="text-muted text-sm mt-1 leading-relaxed">{study.context}</p>
-            </div>
-            <div class="pl-3 border-l-2 border-emerald-400">
-              <span class="text-xs font-semibold uppercase tracking-wide" style="color: #34d399;">Investigation / Approach</span>
-              <p class="text-muted text-sm mt-1 leading-relaxed">{study.approach}</p>
-            </div>
-            <div class="pl-3 border-l-2 border-violet-400">
-              <span class="text-xs font-semibold uppercase tracking-wide" style="color: #a78bfa;">Outcome</span>
-              <p class="text-muted text-sm mt-1 leading-relaxed">{study.outcome}</p>
-            </div>
-          </div>
-          <div class="flex flex-wrap gap-2 pt-4 border-t border-theme">
-            {study.tech.map((tag) => (
+          <h3 class="text-lg font-semibold text-theme mb-3">{project.title}</h3>
+          <p class="text-muted text-sm leading-relaxed mb-6 flex-1">{project.description}</p>
+          <div class="flex flex-wrap gap-2 mb-6">
+            {project.tags.map((tag) => (
               <span class="tag">{tag}</span>
             ))}
+          </div>
+          <div class="flex flex-wrap gap-3 pt-4 border-t border-theme mt-auto">
+            {project.demoUrl && (
+              <a href={project.demoUrl} class="btn-primary" target="_blank" rel="noopener noreferrer">
+                Live Demo
+              </a>
+            )}
+            {project.repoUrl && (
+              <a href={project.repoUrl} class="btn-secondary" target="_blank" rel="noopener noreferrer">
+                Source Code
+              </a>
+            )}
           </div>
         </div>
       ))}
