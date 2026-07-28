@@ -4,3 +4,5 @@ portfolio/.astro/settings.json
 
 # Local Netlify folder
 .netlify
+.vercel
+.env*

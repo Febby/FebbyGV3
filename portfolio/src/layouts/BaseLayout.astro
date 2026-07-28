@@ -17,7 +17,7 @@ const { title = 'Febby Gunawan Portfolio', description } = Astro.props;
         try {
           var saved = localStorage.getItem('theme');
           var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-          var isDark = saved ? saved === 'dark' : true;
+          var isDark = saved ? saved === 'dark' : prefersDark;
           document.documentElement.classList.toggle('dark', isDark);
         } catch (e) {}
       })();
