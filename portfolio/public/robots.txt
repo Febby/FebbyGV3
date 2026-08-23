@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://febbygunawan.com/sitemap-index.xml
