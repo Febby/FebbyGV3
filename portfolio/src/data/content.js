@@ -37,6 +37,45 @@ export const services = [
   },
 ];
 
+export const shopifyProblems = [
+  {
+    title: 'Cart Froze When Removing a Free Gift',
+    problem:
+      'A Shopify storefront became unresponsive when customers removed an automatically added free gift from the cart.',
+    investigation:
+      'I traced the cart update lifecycle and isolated the issue to custom DOM monitoring interacting with another quick-cart implementation. A MutationObserver was repeatedly reacting to cart changes and creating an unintended update loop.',
+    solution:
+      'I removed the overly broad observer logic and narrowed the integration so the gift functionality responded only to the cart events it actually needed.',
+    result:
+      'Gift removal worked normally again without freezing the storefront or disrupting the existing cart experience.',
+    tags: ['JavaScript', 'Shopify', 'MutationObserver', 'Cart Debugging'],
+  },
+  {
+    title: 'Hiding Sold-Out Variants Before Native Support Existed',
+    problem:
+      'The inventory-management app could hide an entire product when all variants were sold out, but it did not yet support hiding individual unavailable variants on the product page.',
+    investigation:
+      'I reviewed how the theme represented unavailable variants and found that sold-out options could be identified through their disabled state in the rendered product controls.',
+    solution:
+      'I created a lightweight JavaScript enhancement that monitored the variant selector, detected disabled sold-out options, and automatically hid them as the product interface changed.',
+    result:
+      'Customers only saw purchasable variants while the merchant continued using the existing app and theme without waiting for native variant-level support.',
+    tags: ['JavaScript', 'Shopify', 'MutationObserver', 'Variant Logic'],
+  },
+  {
+    title: 'Adding a View Product Action Inside an Upsell Detail View',
+    problem:
+      'A merchant wanted customers to inspect an upsell product in its original storefront context before deciding whether to add it. The upsell detail view was rendered inside an iframe without the merchant\'s normal product-page layout or navigation.',
+    investigation:
+      'I reviewed how the upsell detail view was rendered and identified where the product information and existing action controls were inserted inside the iframe-based flow.',
+    solution:
+      'I added a lightweight custom element beneath the existing upsell controls that linked directly to the product page and opened it in a new tab without interrupting the upsell flow.',
+    result:
+      'Customers could review the original product page before making a decision while the existing upsell interaction and app behavior remained unchanged.',
+    tags: ['JavaScript', 'Shopify', 'Iframe', 'Upsell UX'],
+  },
+];
+
 export const projects = [
   {
     title: 'Candy Duds',
