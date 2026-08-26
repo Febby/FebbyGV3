@@ -1,0 +1,40 @@
+---
+// Shopify Problems I've Solved — anonymized case-study cards.
+import { shopifyProblems } from '../data/content.js';
+
+const steps = [
+  { key: 'problem', label: 'Problem' },
+  { key: 'investigation', label: 'Investigation' },
+  { key: 'solution', label: 'Solution' },
+  { key: 'result', label: 'Result' },
+];
+---
+<section id="shopify-problems" class="py-24 px-4 bg-page">
+  <div class="max-w-6xl mx-auto">
+    <span class="reveal section-label" style="--reveal-delay: 0ms">Case Studies</span>
+    <h2 class="reveal text-3xl md:text-4xl font-bold text-center mb-3 text-theme" style="--reveal-delay: 80ms">Shopify Problems I've Solved</h2>
+    <p class="reveal text-center text-muted mb-14 max-w-lg mx-auto text-sm md:text-base" style="--reveal-delay: 140ms">
+      Real Shopify storefront issues I've diagnosed and solved across themes and third-party apps.
+    </p>
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {shopifyProblems.map((item, i) => (
+        <div class="reveal card flex flex-col" style={`--reveal-delay: ${200 + i * 100}ms`}>
+          <h3 class="text-lg font-semibold text-theme mb-5">{item.title}</h3>
+          <dl class="space-y-4 mb-6 flex-1">
+            {steps.map((step) => (
+              <div>
+                <dt class="text-xs font-bold uppercase tracking-wider text-accent mb-1">{step.label}</dt>
+                <dd class="text-muted text-sm leading-relaxed">{item[step.key]}</dd>
+              </div>
+            ))}
+          </dl>
+          <div class="flex flex-wrap gap-2 pt-4 border-t border-theme">
+            {item.tags.map((tag) => (
+              <span class="tag">{tag}</span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

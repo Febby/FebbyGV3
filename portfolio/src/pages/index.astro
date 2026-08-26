@@ -1,9 +1,11 @@
 ---
-// Home page — sections ordered: Hero, About, Services, Case Studies, Blog, Resources, Skills, Contact.
+// Home page — sections ordered: Hero, CredibilityStrip, About, Services, Shopify Problems, Case Studies, Blog, Resources, Skills, Contact.
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
+import CredibilityStrip from '../components/CredibilityStrip.astro';
 import AboutSection from '../components/AboutSection.astro';
 import ServicesSection from '../components/ServicesSection.astro';
+import ShopifyProblemsSection from '../components/ShopifyProblemsSection.astro';
 import CaseStudiesSection from '../components/CaseStudiesSection.astro';
 import BlogSection from '../components/BlogSection.astro';
 import ResourcesSection from '../components/ResourcesSection.astro';
@@ -15,9 +17,13 @@ import ContactSection from '../components/ContactSection.astro';
   description="I build clean, responsive websites and help eCommerce brands solve tricky front-end, cart, and app integration issues."
 >
   <Hero />
+  <CredibilityStrip />
   <AboutSection />
   <ServicesSection />
-  <CaseStudiesSection />
+  <div id="work">
+    <ShopifyProblemsSection />
+    <CaseStudiesSection />
+  </div>
   <BlogSection />
   <ResourcesSection />
   <SkillsSection />
