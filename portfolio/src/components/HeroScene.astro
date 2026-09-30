@@ -1,0 +1,1009 @@
+---
+// HeroScene — decorative "Shopify debugging workspace" rendered with plain Three.js.
+// Progressive enhancement: a static SVG illustration renders by default. When the
+// hero scrolls into view (and WebGL is available), three.js is dynamically imported
+// and an interactive scene replaces the fallback. Everything is primitive geometry
+// plus canvas-generated textures — no external assets.
+---
+
+<div class="hero-scene" data-hero-scene>
+  <div class="hero-scene-glow" aria-hidden="true"></div>
+  <!-- Static fallback: shown when JS/WebGL is unavailable -->
+  <svg class="hero-scene-fallback" aria-hidden="true" role="presentation" focusable="false" viewBox="0 0 480 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="240" cy="338" rx="170" ry="18" fill="var(--color-text)" opacity="0.08" />
+
+    <!-- greeting label -->
+    <rect class="hs-panel" x="110" y="8" width="260" height="46" rx="23" stroke-width="2.5" />
+    <circle cx="140" cy="31" r="7" fill="var(--color-accent)" />
+    <text x="256" y="38" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-weight="600" font-size="20" fill="var(--color-text)">Hello, I'm Febby 👋</text>
+
+    <!-- laptop screen (dark bezel) -->
+    <rect x="140" y="92" width="200" height="148" rx="10" fill="#0f172a" stroke="var(--color-border)" stroke-width="2" />
+    <rect x="150" y="102" width="180" height="128" rx="4" fill="var(--color-surface)" stroke="var(--color-border)" />
+    <rect x="150" y="102" width="180" height="14" fill="var(--color-border)" opacity="0.5" />
+    <circle cx="159" cy="109" r="3" fill="#f87171" /><circle cx="169" cy="109" r="3" fill="#fbbf24" /><circle cx="179" cy="109" r="3" fill="#34d399" />
+    <!-- code pane -->
+    <rect x="150" y="116" width="100" height="96" fill="#0b1220" />
+    <rect x="158" y="126" width="50" height="5" rx="2.5" fill="#7dd3fc" />
+    <rect x="166" y="137" width="60" height="5" rx="2.5" fill="#c4b5fd" />
+    <rect x="166" y="148" width="40" height="5" rx="2.5" fill="#34d399" />
+    <rect x="158" y="159" width="70" height="5" rx="2.5" fill="#fbbf24" />
+    <rect x="166" y="170" width="55" height="5" rx="2.5" fill="#f1f5f9" opacity="0.7" />
+    <rect x="158" y="181" width="36" height="5" rx="2.5" fill="#7dd3fc" />
+    <!-- storefront pane -->
+    <rect x="258" y="124" width="42" height="6" rx="3" fill="var(--color-accent)" />
+    <rect x="258" y="138" width="30" height="30" rx="4" fill="#95bf47" />
+    <rect x="292" y="138" width="30" height="30" rx="4" fill="var(--color-border)" />
+    <rect x="258" y="174" width="30" height="30" rx="4" fill="var(--color-border)" />
+    <rect x="292" y="174" width="30" height="30" rx="4" fill="var(--color-accent)" opacity="0.45" />
+    <!-- console strip -->
+    <rect x="150" y="212" width="180" height="18" fill="#0b1220" />
+    <rect x="158" y="219" width="86" height="4" rx="2" fill="#34d399" />
+
+    <!-- laptop base -->
+    <rect class="hs-panel" x="118" y="240" width="244" height="14" rx="6" stroke-width="2" />
+
+    <!-- code chip -->
+    <rect class="hs-panel" x="62" y="120" width="56" height="56" rx="14" stroke-width="2.5" />
+    <text x="90" y="158" text-anchor="middle" font-family="'Space Grotesk', monospace" font-weight="700" font-size="24" fill="var(--color-accent)">&lt;/&gt;</text>
+
+    <!-- shopify chip -->
+    <rect class="hs-panel" x="372" y="66" width="56" height="56" rx="14" stroke-width="2.5" />
+    <path d="M389 86 h22 l4 26 h-30 z" fill="#95bf47" />
+    <path d="M394 86 a6 6 0 0 1 12 0" stroke="#95bf47" stroke-width="3" fill="none" />
+    <text x="400" y="106" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-weight="800" font-size="14" fill="#ffffff">S</text>
+
+    <!-- cart chip -->
+    <rect class="hs-panel" x="366" y="222" width="60" height="60" rx="15" stroke-width="2.5" />
+    <path d="M378 240 h7 l5 22 h26 l5 -16 h-33" stroke="var(--color-accent)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="395" cy="270" r="3.5" fill="var(--color-accent)" />
+    <circle cx="414" cy="270" r="3.5" fill="var(--color-accent)" />
+    <circle cx="420" cy="232" r="7" fill="#95bf47" />
+
+    <!-- mug -->
+    <path d="M40 244 h50 v38 a16 16 0 0 1 -16 16 h-18 a16 16 0 0 1 -16 -16 z" fill="var(--color-accent)" />
+    <path d="M90 254 h8 a13 13 0 0 1 0 26 h-8" stroke="var(--color-accent)" stroke-width="7" fill="none" />
+    <ellipse cx="65" cy="245" rx="25" ry="7" fill="#3f2d20" />
+  </svg>
+  <button type="button" class="hero-scene-toggle" data-hero-scene-toggle aria-expanded="false">
+    <svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 11h10.2l2-8H6.2" /><circle cx="9" cy="19.5" r="1.3" /><circle cx="17" cy="19.5" r="1.3" /></svg>
+    <span data-hero-scene-label>Try the cart</span>
+  </button>
+</div>
+
+<script>
+  const container = document.querySelector('[data-hero-scene]');
+
+  if (container) {
+    let webgl = false;
+    try {
+      const test = document.createElement('canvas');
+      webgl = !!(test.getContext('webgl2') || test.getContext('webgl'));
+    } catch (e) {
+      webgl = false;
+    }
+
+    if (webgl) {
+      let scene: { play(): void; pause(): void } | null = null;
+      let scenePromise: Promise<{ play(): void; pause(): void }> | null = null;
+      let visible = false;
+      let failed = false;
+
+      const io = new IntersectionObserver(async (entries) => {
+        for (const entry of entries) {
+          visible = entry.isIntersecting;
+          if (!visible) {
+            scene?.pause();
+            continue;
+          }
+          if (failed) continue;
+
+          if (!scene) {
+            try {
+              scene = await (scenePromise ??= createScene(container));
+            } catch {
+              // Leave the static SVG in place and never retry a broken init.
+              failed = true;
+              container.querySelector('canvas')?.remove();
+              container.classList.remove('has-canvas', 'is-live');
+              io.disconnect();
+              continue;
+            }
+          }
+          if (visible && !document.hidden) scene.play();
+        }
+      }, { rootMargin: '60px', threshold: 0.05 });
+
+      io.observe(container);
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) scene?.pause();
+        else if (visible) scene?.play();
+      });
+    }
+  }
+
+  async function createScene(container: Element) {
+    const THREE = await import('three');
+
+    // Live media queries: reduced-motion / pointer changes apply without reload.
+    const reducedMq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const fineMq = window.matchMedia('(pointer: fine)');
+    const toggleBtn = container.querySelector<HTMLButtonElement>('[data-hero-scene-toggle]');
+    const toggleLabel = container.querySelector<HTMLElement>('[data-hero-scene-label]');
+
+    const readColors = () => {
+      const s = getComputedStyle(document.documentElement);
+      return {
+        surface: s.getPropertyValue('--color-surface').trim(),
+        border: s.getPropertyValue('--color-border').trim(),
+        text: s.getPropertyValue('--color-text').trim(),
+        muted: s.getPropertyValue('--color-muted').trim(),
+        accent: s.getPropertyValue('--color-accent').trim(),
+      };
+    };
+
+    let C = readColors();
+    const SHOPIFY_GREEN = '#95bf47';
+    const SUCCESS = '#34d399';
+    const EDITOR_BG = '#0b1220';
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+    renderer.domElement.setAttribute('aria-hidden', 'true');
+    container.appendChild(renderer.domElement);
+    container.classList.add('has-canvas');
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 60);
+
+    const isDark = () => document.documentElement.classList.contains('dark');
+
+    const hemi = new THREE.HemisphereLight(0xffffff, 0x8a97ad, 1.15);
+    scene.add(hemi);
+    const key = new THREE.DirectionalLight(0xffffff, 1.5);
+    key.position.set(4, 6, 5);
+    scene.add(key);
+
+    const world = new THREE.Group();
+    scene.add(world);
+
+    // ── canvas-texture helpers ──────────────────────────────────────────
+    const rr = (ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) => {
+      ctx.beginPath();
+      if (typeof ctx.roundRect === 'function') ctx.roundRect(x, y, w, h, r);
+      else ctx.rect(x, y, w, h);
+    };
+
+    const rgba = (hex: string, a: number) => {
+      const m = /^#?([0-9a-f]{6})$/i.exec(hex.trim());
+      if (!m) return `rgba(128, 140, 160, ${a})`;
+      const n = parseInt(m[1], 16);
+      return `rgba(${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}, ${a})`;
+    };
+
+    const makeTex = (w: number, h: number, draw: (ctx: CanvasRenderingContext2D, w: number, h: number) => void) => {
+      const cv = document.createElement('canvas');
+      cv.width = w;
+      cv.height = h;
+      draw(cv.getContext('2d')!, w, h);
+      const tex = new THREE.CanvasTexture(cv);
+      tex.colorSpace = THREE.SRGBColorSpace;
+      tex.anisotropy = 4;
+      return tex;
+    };
+
+    // Rebuildable textures — regenerated when the theme toggles.
+    const regens: (() => void)[] = [];
+    const bindTex = (
+      mat: { map: unknown; needsUpdate: boolean },
+      w: number,
+      h: number,
+      draw: (ctx: CanvasRenderingContext2D, w: number, h: number) => void
+    ) => {
+      const apply = () => {
+        (mat.map as { dispose(): void } | null)?.dispose();
+        mat.map = makeTex(w, h, draw);
+        mat.needsUpdate = true;
+      };
+      apply();
+      regens.push(apply);
+    };
+
+    // ── texture painters ────────────────────────────────────────────────
+    const chipBase = (ctx: CanvasRenderingContext2D, w: number, h: number) => {
+      ctx.clearRect(0, 0, w, h);
+      const dark = isDark();
+      // Slightly lifted surface for chips so they read against the hero bg
+      ctx.fillStyle = dark ? '#1e293b' : '#ffffff';
+      ctx.strokeStyle = dark ? 'rgba(148, 163, 184, 0.5)' : '#7b8aa3';
+      ctx.lineWidth = dark ? 7 : 8;
+      rr(ctx, 10, 10, w - 20, h - 20, 42);
+      ctx.fill();
+      ctx.stroke();
+    };
+
+    const drawScreen = (ctx: CanvasRenderingContext2D, w: number, h: number) => {
+      // browser chrome
+      ctx.fillStyle = C.surface;
+      ctx.fillRect(0, 0, w, h);
+      ctx.fillStyle = C.border;
+      ctx.fillRect(0, 0, w, 26);
+      ['#f87171', '#fbbf24', '#34d399'].forEach((c, i) => {
+        ctx.fillStyle = c;
+        ctx.beginPath();
+        ctx.arc(18 + i * 16, 13, 4.5, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      ctx.fillStyle = 'rgba(128, 140, 160, 0.18)';
+      rr(ctx, 72, 6, w - 96, 14, 7);
+      ctx.fill();
+      ctx.fillStyle = C.muted;
+      ctx.font = '9px Inter, sans-serif';
+      ctx.fillText('my-store.myshopify.com', 82, 16);
+
+      const top = 26;
+      const shopW = 292;
+
+      // ── storefront pane ──
+      ctx.fillStyle = C.surface;
+      ctx.fillRect(0, top, shopW, h - top);
+
+      // store nav: accent logo + cart icon with item badge
+      ctx.fillStyle = C.accent;
+      rr(ctx, 14, top + 10, 52, 9, 4.5);
+      ctx.fill();
+      ctx.strokeStyle = C.text;
+      ctx.lineWidth = 2;
+      rr(ctx, shopW - 36, top + 8, 16, 12, 2);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(shopW - 28, top + 7, 4, Math.PI, 0);
+      ctx.stroke();
+      ctx.fillStyle = SHOPIFY_GREEN;
+      ctx.beginPath();
+      ctx.arc(shopW - 16, top + 7, 6.5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '700 8px Inter, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('1', shopW - 16, top + 10);
+      ctx.textAlign = 'left';
+
+      // product card
+      ctx.strokeStyle = C.border;
+      ctx.lineWidth = 1.5;
+      rr(ctx, 16, top + 34, shopW - 32, 132, 10);
+      ctx.stroke();
+      ctx.fillStyle = SHOPIFY_GREEN;
+      rr(ctx, 26, top + 44, 84, 70, 6);
+      ctx.fill();
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+      ctx.font = '800 32px "Space Grotesk", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('S', 68, top + 88);
+      ctx.textAlign = 'left';
+      ctx.fillStyle = C.text;
+      rr(ctx, 122, top + 48, 118, 9, 4);
+      ctx.fill();
+      ctx.fillStyle = C.muted;
+      rr(ctx, 122, top + 64, 72, 6, 3);
+      ctx.fill();
+      ctx.font = '700 13px Inter, sans-serif';
+      ctx.fillStyle = C.text;
+      ctx.fillText('$48.00', 122, top + 92);
+      ctx.fillStyle = SHOPIFY_GREEN;
+      rr(ctx, 122, top + 104, 138, 26, 13);
+      ctx.fill();
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '600 11px Inter, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('Add to cart', 191, top + 120);
+      ctx.textAlign = 'left';
+      ctx.fillStyle = C.muted;
+      rr(ctx, 26, top + 122, 84, 6, 3);
+      ctx.fill();
+      rr(ctx, 26, top + 134, 60, 6, 3);
+      ctx.fill();
+
+      // free-gift upsell strip
+      ctx.setLineDash([4, 4]);
+      ctx.strokeStyle = C.accent;
+      ctx.lineWidth = 1.5;
+      rr(ctx, 16, top + 176, shopW - 32, 36, 9);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle = C.accent;
+      rr(ctx, 28, top + 184, 20, 20, 4);
+      ctx.fill();
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(38, top + 184);
+      ctx.lineTo(38, top + 204);
+      ctx.moveTo(28, top + 192);
+      ctx.lineTo(48, top + 192);
+      ctx.stroke();
+      ctx.fillStyle = C.text;
+      ctx.font = '600 10px Inter, sans-serif';
+      ctx.fillText('Free gift unlocked', 58, top + 190);
+      ctx.fillStyle = C.muted;
+      ctx.font = '9px Inter, sans-serif';
+      ctx.fillText('Added automatically at $75+', 58, top + 203);
+
+      // more-products row
+      const tw = (shopW - 32 - 16) / 3;
+      for (let i = 0; i < 3; i++) {
+        const gx = 16 + i * (tw + 8);
+        ctx.strokeStyle = C.border;
+        ctx.lineWidth = 1.5;
+        rr(ctx, gx, top + 222, tw, 44, 6);
+        ctx.stroke();
+        ctx.fillStyle = i === 1 ? rgba(C.accent, 0.5) : 'rgba(128, 140, 160, 0.22)';
+        rr(ctx, gx + 6, top + 228, tw - 12, 22, 4);
+        ctx.fill();
+        ctx.fillStyle = C.muted;
+        rr(ctx, gx + 6, top + 256, tw - 24, 4, 2);
+        ctx.fill();
+      }
+
+      // ── code / debug pane (always dark, like a real editor) ──
+      ctx.fillStyle = EDITOR_BG;
+      ctx.fillRect(shopW, top, w - shopW, h - top);
+      ctx.fillStyle = 'rgba(148, 163, 184, 0.5)';
+      ctx.font = '9px monospace';
+      ctx.fillText('assets/cart-drawer.js', shopW + 12, top + 16);
+      const palette = ['#7dd3fc', '#c4b5fd', '#34d399', '#fbbf24', '#f1f5f9'];
+      const lines: [number, number, number, number][] = [
+        [0, 0, 80, 34], [1, 18, 55, 62], [2, 18, 88, 38], [4, 36, 42, 66],
+        [0, 0, 96, 28], [3, 18, 58, 55], [1, 18, 72, 42], [2, 36, 50, 58],
+      ];
+      let y = top + 34;
+      lines.forEach(([c, indent, l1, l2]) => {
+        ctx.fillStyle = palette[c];
+        ctx.globalAlpha = 0.9;
+        rr(ctx, shopW + 12 + indent, y, l1 * 0.78, 6, 3);
+        ctx.fill();
+        if (l2) {
+          ctx.fillStyle = palette[(c + 2) % palette.length];
+          rr(ctx, shopW + 12 + indent + l1 * 0.78 + 5, y, l2 * 0.55, 6, 3);
+          ctx.fill();
+        }
+        ctx.globalAlpha = 1;
+        y += 16;
+      });
+      // console output at the bottom of the debug pane
+      ctx.font = '9px monospace';
+      ctx.fillStyle = '#f87171';
+      ctx.fillText('\u2715 cart drawer not opening', shopW + 12, h - 34);
+      ctx.fillStyle = SUCCESS;
+      ctx.fillText('\u2713 fixed \u2014 listening for ajax cart', shopW + 12, h - 18);
+    };
+
+    const drawDeck = (ctx: CanvasRenderingContext2D, w: number, h: number) => {
+      ctx.fillStyle = C.surface;
+      ctx.fillRect(0, 0, w, h);
+      ctx.fillStyle = isDark() ? 'rgba(128, 140, 160, 0.35)' : 'rgba(128, 140, 160, 0.2)';
+      for (let r = 0; r < 4; r++) {
+        for (let c = 0; c < 10; c++) {
+          rr(ctx, 16 + c * 23, 12 + r * 22, 17, 13, 3);
+          ctx.fill();
+        }
+      }
+      rr(ctx, 88, 106, 80, 40, 7);
+      ctx.fill();
+    };
+
+    const drawCodeChip = (ctx: CanvasRenderingContext2D, w: number, h: number) => {
+      chipBase(ctx, w, h);
+      ctx.fillStyle = C.accent;
+      ctx.font = '700 92px "Space Grotesk", monospace';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('</>', w / 2, h / 2 + 6);
+    };
+
+    const drawBagChip = (ctx: CanvasRenderingContext2D, w: number, h: number) => {
+      chipBase(ctx, w, h);
+      ctx.fillStyle = SHOPIFY_GREEN;
+      ctx.beginPath();
+      ctx.moveTo(72, 100);
+      ctx.lineTo(184, 100);
+      ctx.lineTo(194, 202);
+      ctx.lineTo(62, 202);
+      ctx.closePath();
+      ctx.fill();
+      ctx.strokeStyle = SHOPIFY_GREEN;
+      ctx.lineWidth = 10;
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.arc(128, 98, 24, Math.PI, 0);
+      ctx.stroke();
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '800 74px "Space Grotesk", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('S', 128, 154);
+    };
+
+    const drawCartChip = (ctx: CanvasRenderingContext2D, w: number, h: number) => {
+      chipBase(ctx, w, h);
+      ctx.strokeStyle = C.accent;
+      ctx.lineWidth = 11;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.beginPath();
+      ctx.moveTo(56, 82);
+      ctx.lineTo(76, 82);
+      ctx.lineTo(92, 156);
+      ctx.lineTo(184, 156);
+      ctx.lineTo(200, 102);
+      ctx.lineTo(82, 102);
+      ctx.stroke();
+      ctx.fillStyle = C.accent;
+      ctx.beginPath();
+      ctx.arc(108, 182, 11, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(172, 182, 11, 0, Math.PI * 2);
+      ctx.fill();
+      // item-count badge — hints that the cart is interactive
+      ctx.fillStyle = SHOPIFY_GREEN;
+      ctx.beginPath();
+      ctx.arc(198, 66, 26, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '700 30px Inter, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('1', 198, 68);
+    };
+
+    const drawDrawer = (ctx: CanvasRenderingContext2D, w: number, h: number) => {
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = isDark() ? C.surface : '#ffffff';
+      ctx.strokeStyle = isDark() ? 'rgba(148, 163, 184, 0.45)' : '#7b8aa3';
+      ctx.lineWidth = isDark() ? 4 : 5;
+      rr(ctx, 4, 4, w - 8, h - 8, 22);
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = C.text;
+      ctx.font = '700 21px "Space Grotesk", sans-serif';
+      ctx.textAlign = 'left';
+      ctx.fillText('Cart', 22, 40);
+      ctx.fillStyle = C.muted;
+      ctx.font = '20px sans-serif';
+      ctx.textAlign = 'right';
+      ctx.fillText('\u00d7', w - 22, 40);
+      ctx.strokeStyle = C.border;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(18, 54);
+      ctx.lineTo(w - 18, 54);
+      ctx.stroke();
+      for (let i = 0; i < 2; i++) {
+        const iy = 72 + i * 62;
+        ctx.fillStyle = i ? C.accent : SHOPIFY_GREEN;
+        ctx.globalAlpha = 0.85;
+        rr(ctx, 22, iy, 44, 44, 9);
+        ctx.fill();
+        ctx.globalAlpha = 1;
+        ctx.fillStyle = C.text;
+        rr(ctx, 78, iy + 5, 112 - i * 22, 7, 3);
+        ctx.fill();
+        ctx.fillStyle = C.muted;
+        rr(ctx, 78, iy + 19, 74, 5, 2);
+        ctx.fill();
+        rr(ctx, 78, iy + 31, 44, 5, 2);
+        ctx.fill();
+      }
+      ctx.strokeStyle = C.border;
+      ctx.beginPath();
+      ctx.moveTo(18, 206);
+      ctx.lineTo(w - 18, 206);
+      ctx.stroke();
+      ctx.fillStyle = C.muted;
+      ctx.font = '12px Inter, sans-serif';
+      ctx.textAlign = 'left';
+      ctx.fillText('Subtotal', 22, 230);
+      ctx.fillStyle = C.text;
+      ctx.textAlign = 'right';
+      ctx.fillText('$124.00', w - 22, 230);
+      ctx.fillStyle = C.accent;
+      rr(ctx, 22, 248, w - 44, 36, 18);
+      ctx.fill();
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '600 13px Inter, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('Checkout', w / 2, 270);
+      ctx.fillStyle = SUCCESS;
+      ctx.font = '11px Inter, sans-serif';
+      ctx.fillText('\u2713 drawer.js patched', w / 2, h - 20);
+    };
+
+    const drawGreeting = (ctx: CanvasRenderingContext2D, w: number, h: number) => {
+      ctx.clearRect(0, 0, w, h);
+      // Measure text width including emoji — canvas measureText underestimates
+      // emoji width on some platforms, so add generous right padding.
+      const fontSize = 60;
+      ctx.font = `600 ${fontSize}px "Space Grotesk", Inter, sans-serif`;
+      const text = "Hello, I'm Febby \u{1F44B}";
+      const textWidth = ctx.measureText(text).width;
+      const emojiPad = fontSize * 0.6; // extra space for emoji rendering variance
+      const contentW = textWidth + emojiPad + 80; // 80px for accent dot + left pad
+      const panelW = Math.min(w - 16, Math.max(contentW + 32, w * 0.92));
+      const panelH = h - 32;
+      const px = (w - panelW) / 2;
+      const py = 16;
+      // panel
+      ctx.fillStyle = isDark() ? C.surface : '#ffffff';
+      ctx.strokeStyle = isDark() ? 'rgba(148, 163, 184, 0.45)' : '#7b8aa3';
+      ctx.lineWidth = isDark() ? 5 : 5;
+      rr(ctx, px, py, panelW, panelH, 36);
+      ctx.fill();
+      ctx.stroke();
+      // accent dot
+      const dotR = 12;
+      const dotX = px + 36;
+      ctx.fillStyle = C.accent;
+      ctx.beginPath();
+      ctx.arc(dotX, py + panelH / 2, dotR, 0, Math.PI * 2);
+      ctx.fill();
+      // text — centered in remaining space after dot
+      ctx.fillStyle = C.text;
+      ctx.font = `600 ${fontSize}px "Space Grotesk", Inter, sans-serif`;
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'middle';
+      const textX = dotX + dotR + 18;
+      ctx.fillText(text, textX, py + panelH / 2 + 3);
+    };
+
+    // ── laptop ──────────────────────────────────────────────────────────
+    // Dark theme lifts the body off the near-black page so the silhouette reads.
+    const bodyColor = () => (isDark() ? '#2a3b55' : C.surface);
+    const edgeColor = () => (isDark() ? '#8ea2c0' : '#5b6b85');
+    const bodyMat = new THREE.MeshStandardMaterial({ color: bodyColor(), roughness: 0.55, metalness: 0.2 });
+    const edgeMat = new THREE.LineBasicMaterial({ color: edgeColor() });
+    const themed: { mat: { color: { set(v: string): void } }; get: () => string }[] = [
+      { mat: bodyMat, get: bodyColor },
+      { mat: edgeMat, get: edgeColor },
+    ];
+    const addEdges = (mesh: import('three').Mesh) =>
+      mesh.add(new THREE.LineSegments(new THREE.EdgesGeometry(mesh.geometry), edgeMat));
+    // Light theme: brighter ambient + less metallic body so the white laptop
+    // stays clean instead of going gray; dark theme keeps the original values.
+    const applyThemeLighting = () => {
+      const dark = isDark();
+      hemi.intensity = dark ? 1.15 : 1.3;
+      key.intensity = dark ? 1.5 : 1.35;
+      bodyMat.metalness = dark ? 0.2 : 0.08;
+      bodyMat.roughness = dark ? 0.55 : 0.5;
+      bodyMat.emissive.set(dark ? '#000000' : '#ffffff');
+      bodyMat.emissiveIntensity = dark ? 0 : 0.3;
+    };
+    applyThemeLighting();
+    const laptop = new THREE.Group();
+    laptop.rotation.y = -0.06;
+
+    const base = new THREE.Mesh(new THREE.BoxGeometry(2.3, 0.09, 1.5), bodyMat);
+    base.position.y = 0.045;
+    addEdges(base);
+    laptop.add(base);
+
+    const deckMat = new THREE.MeshStandardMaterial({ roughness: 0.85, metalness: 0 });
+    bindTex(deckMat, 256, 160, drawDeck);
+    const deck = new THREE.Mesh(new THREE.PlaneGeometry(2.1, 1.3), deckMat);
+    deck.rotation.x = -Math.PI / 2;
+    deck.position.y = 0.092;
+    laptop.add(deck);
+
+    const hinge = new THREE.Group();
+    hinge.position.set(0, 0.09, -0.72);
+    laptop.add(hinge);
+    const lid = new THREE.Mesh(new THREE.BoxGeometry(2.3, 1.5, 0.07), bodyMat);
+    lid.position.set(0, 0.75, -0.035);
+    addEdges(lid);
+    hinge.add(lid);
+    const screenMat = new THREE.MeshBasicMaterial({});
+    bindTex(screenMat, 512, 340, drawScreen);
+    const screen = new THREE.Mesh(new THREE.PlaneGeometry(2.08, 1.32), screenMat);
+    screen.position.set(0, 0.75, 0.005);
+    const bezel = new THREE.Mesh(new THREE.PlaneGeometry(2.18, 1.42), new THREE.MeshBasicMaterial({ color: 0x0f172a }));
+    bezel.position.set(0, 0.75, 0.003);
+    hinge.add(bezel);
+    hinge.add(screen);
+    hinge.rotation.x = -0.12;
+    laptop.scale.setScalar(1.6);
+    world.add(laptop);
+
+    // ── soft radial contact shadow (no visible platform) ────────────────
+    // Regenerated on theme toggle — much fainter in light mode so the scene
+    // grounds transparently instead of sitting on a visible dark ellipse.
+    const shadowMat = new THREE.MeshBasicMaterial({ transparent: true, depthWrite: false });
+    bindTex(shadowMat, 256, 256, (ctx, w, h) => {
+      const dark = isDark();
+      const g = ctx.createRadialGradient(w / 2, h / 2, 14, w / 2, h / 2, w / 2);
+      g.addColorStop(0, dark ? 'rgba(0, 0, 0, 0.24)' : 'rgba(15, 23, 42, 0.11)');
+      g.addColorStop(0.55, dark ? 'rgba(0, 0, 0, 0.09)' : 'rgba(15, 23, 42, 0.045)');
+      g.addColorStop(1, 'rgba(0, 0, 0, 0)');
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, w, h);
+    });
+    const shadow = new THREE.Mesh(
+      new THREE.PlaneGeometry(7.0, 4.4),
+      shadowMat
+    );
+    shadow.rotation.x = -Math.PI / 2;
+    shadow.position.y = -0.03;
+    shadow.renderOrder = 1;
+    world.add(shadow);
+
+    // ── coffee cup — secondary scene object, visible in both themes ──────
+    const cupMat = new THREE.MeshStandardMaterial({ color: C.accent, roughness: 0.45, metalness: 0.1, emissive: new THREE.Color(C.accent), emissiveIntensity: 0.08 });
+    themed.push({ mat: cupMat, get: () => C.accent });
+    const cup = new THREE.Group();
+    const cupBody = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.1, 0.24, 28), cupMat);
+    cupBody.position.y = 0.12;
+    cup.add(cupBody);
+    const handle = new THREE.Mesh(new THREE.TorusGeometry(0.075, 0.026, 12, 24), cupMat);
+    handle.position.set(0.125, 0.13, 0);
+    cup.add(handle);
+    const coffeeTop = new THREE.Mesh(
+      new THREE.CircleGeometry(0.1, 28),
+      new THREE.MeshBasicMaterial({ color: 0x3f2d20 })
+    );
+    coffeeTop.rotation.x = -Math.PI / 2;
+    coffeeTop.position.y = 0.241;
+    cup.add(coffeeTop);
+    // Front-left, clear of the laptop base, handle turned toward the camera
+    cup.scale.setScalar(2.5);
+    cup.position.set(-2.4, 0, 1.15);
+    cup.rotation.y = -0.5;
+    world.add(cup);
+
+    // ── chips ───────────────────────────────────────────────────────────
+    type Mesh = import('three').Mesh;
+    const chipGeo = new THREE.PlaneGeometry(0.58, 0.58);
+    const chips: Mesh[] = [];
+    const makeChip = (
+      draw: (ctx: CanvasRenderingContext2D, w: number, h: number) => void,
+      pos: [number, number, number],
+      scale: number
+    ) => {
+      // Unlit so texture colors stay exact in both themes (lit chips went gray).
+      const mat = new THREE.MeshBasicMaterial({ transparent: true });
+      bindTex(mat, 256, 256, draw);
+      const mesh = new THREE.Mesh(chipGeo, mat);
+      mesh.userData = { base: pos, scale, rotY: -pos[0] * 0.06 };
+      world.add(mesh);
+      chips.push(mesh);
+      return mesh;
+    };
+
+    makeChip(drawCodeChip, [-2.15, 1.7, 1.2], 1.0);
+    makeChip(drawBagChip, [2.1, 2.5, 1.0], 0.98);
+    const cartChip = makeChip(drawCartChip, [2.2, 0.4, 1.65], 1.12);
+
+    // Soft accent halo behind the cart chip: the hover / keyboard-focus cue.
+    const haloMat = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false });
+    bindTex(haloMat, 128, 128, (ctx, w, h) => {
+      const g = ctx.createRadialGradient(w / 2, h / 2, w * 0.22, w / 2, h / 2, w / 2);
+      g.addColorStop(0, rgba(C.accent, 0.5));
+      g.addColorStop(0.55, rgba(C.accent, 0.14));
+      g.addColorStop(1, rgba(C.accent, 0));
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, w, h);
+    });
+    // Kept out of the camera-fit set (fades to zero well inside its own edge).
+    const halo = new THREE.Mesh(new THREE.PlaneGeometry(1.15, 1.15), haloMat);
+    halo.renderOrder = 0;
+    world.add(halo);
+
+    // ── cart drawer ─────────────────────────────────────────────────────
+    const cartMat = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false });
+    bindTex(cartMat, 280, 340, drawDrawer);
+    const cartDrawer = new THREE.Mesh(new THREE.PlaneGeometry(1.02, 1.24), cartMat);
+    const cartClosed = [2.2, 0.4, -1.4];
+    const cartOpen = [2.3, 1.55, 1.9];
+    cartDrawer.renderOrder = 10;
+    world.add(cartDrawer);
+
+    // ── greeting ────────────────────────────────────────────────────────
+    const greetMat = new THREE.MeshBasicMaterial({ transparent: true, depthWrite: false });
+    bindTex(greetMat, 760, 200, drawGreeting);
+    const greeting = new THREE.Mesh(new THREE.PlaneGeometry(3.0, 0.79), greetMat);
+    const greetBase = new THREE.Vector3(0, 3.05, -0.2);
+    greeting.rotation.x = 0.08;
+    greeting.renderOrder = 5;
+    world.add(greeting);
+    const cupBase = cup.position.clone();
+
+    // ── state ───────────────────────────────────────────────────────────
+    const CART_MS = 260;
+    const ease = (p: number) => p * p * (3 - 2 * p);
+    let cartTarget = 0; // 0 closed, 1 open
+    let cartP = 0; // linear transition progress
+    const par = { x: 0, y: 0 };
+    const parT = { x: 0, y: 0 };
+    let hoverCart = false;
+    let focusCart = false;
+    let btnHover = false;
+    const highlighted = () => hoverCart || focusCart || btnHover;
+
+    // Single source of truth for every transform. Ground objects (laptop, mug)
+    // never leave the floor; only depth-weighted offsets move floating pieces.
+    const layout = (px: number, py: number, p: number, hl: boolean) => {
+      world.rotation.y = px * 0.045;
+      world.rotation.x = py * 0.018;
+      for (const m of chips) {
+        const b = m.userData.base as number[];
+        m.position.set(b[0] + px * 0.07 * b[2], b[1] - py * 0.025 * b[2], b[2]);
+        m.rotation.y = m.userData.rotY + px * 0.05;
+        m.scale.setScalar(m.userData.scale * (m === cartChip && hl ? 1.06 : 1));
+      }
+      haloMat.opacity = hl ? 1 : 0;
+      halo.position.copy(cartChip.position).z -= 0.02;
+      halo.scale.copy(cartChip.scale);
+      cup.position.set(cupBase.x + px * 0.03, cupBase.y, cupBase.z);
+      greeting.position.set(greetBase.x + px * 0.02, greetBase.y - py * 0.01, greetBase.z);
+      greeting.rotation.y = px * 0.03;
+      const t = ease(p);
+      const z = cartClosed[2] + (cartOpen[2] - cartClosed[2]) * t;
+      cartDrawer.position.set(
+        cartClosed[0] + (cartOpen[0] - cartClosed[0]) * t + px * 0.07 * z,
+        cartClosed[1] + (cartOpen[1] - cartClosed[1]) * t - py * 0.025 * z,
+        z
+      );
+      cartDrawer.scale.setScalar(0.92 + 0.08 * t);
+      cartDrawer.visible = p > 0;
+      cartMat.opacity = Math.min(1, t * 2);
+    };
+    const syncLayout = () => layout(par.x, par.y, cartP, highlighted());
+
+    // ── rendering: on-demand, animation loop only while something moves ─
+    let active = false;
+    let rendered = false;
+    let raf = 0;
+    let last = 0;
+    const draw = () => {
+      syncLayout();
+      renderer.render(scene, camera);
+      if (!rendered) {
+        rendered = true;
+        container.classList.add('is-live');
+      }
+    };
+    const renderOnce = () => {
+      if (active) draw();
+    };
+    const animating = () =>
+      cartP !== cartTarget || Math.abs(par.x - parT.x) > 0.001 || Math.abs(par.y - parT.y) > 0.001;
+    const tick = (now: number) => {
+      raf = 0;
+      const dt = last ? Math.min(0.05, Math.max(0, (now - last) / 1000)) : 1 / 60;
+      last = now;
+      if (reducedMq.matches) {
+        cartP = cartTarget;
+        par.x = par.y = parT.x = parT.y = 0;
+      } else {
+        const step = (dt * 1000) / CART_MS;
+        cartP = cartTarget > cartP ? Math.min(cartTarget, cartP + step) : Math.max(cartTarget, cartP - step);
+        const k = 1 - Math.exp(-dt * 7);
+        par.x += (parT.x - par.x) * k;
+        par.y += (parT.y - par.y) * k;
+        if (Math.abs(par.x - parT.x) < 0.001) par.x = parT.x;
+        if (Math.abs(par.y - parT.y) < 0.001) par.y = parT.y;
+      }
+      draw();
+      if (animating()) raf = requestAnimationFrame(tick);
+      else last = 0;
+    };
+    const requestTick = () => {
+      if (active && !raf) raf = requestAnimationFrame(tick);
+    };
+    const refresh = () => {
+      if (!raf) renderOnce();
+    };
+
+    // ── cart toggle (canvas click, hint button, keyboard) ───────────────
+    const setCart = (open: boolean) => {
+      cartTarget = open ? 1 : 0;
+      toggleBtn?.setAttribute('aria-expanded', String(open));
+      if (toggleLabel) toggleLabel.textContent = open ? 'Close cart' : 'Try the cart';
+      if (reducedMq.matches) {
+        cartP = cartTarget;
+        refresh();
+      } else {
+        requestTick();
+      }
+    };
+    const setHighlight = (fn: () => void) => {
+      const before = highlighted();
+      fn();
+      if (highlighted() !== before) refresh();
+    };
+
+    toggleBtn?.addEventListener('click', () => setCart(!cartTarget));
+    toggleBtn?.addEventListener('pointerenter', () => setHighlight(() => (btnHover = true)));
+    toggleBtn?.addEventListener('pointerleave', () => setHighlight(() => (btnHover = false)));
+    toggleBtn?.addEventListener('focus', () =>
+      setHighlight(() => (focusCart = toggleBtn.matches(':focus-visible')))
+    );
+    toggleBtn?.addEventListener('blur', () => setHighlight(() => (focusCart = false)));
+    container.addEventListener('keydown', (e) => {
+      if ((e as KeyboardEvent).key === 'Escape' && cartTarget) setCart(false);
+    });
+
+    // ── pointer interaction ─────────────────────────────────────────────
+    const cv = renderer.domElement;
+    const raycaster = new THREE.Raycaster();
+    const pointer = new THREE.Vector2();
+    const setPointer = (e: PointerEvent | MouseEvent) => {
+      const r = cv.getBoundingClientRect();
+      pointer.x = ((e.clientX - r.left) / r.width) * 2 - 1;
+      pointer.y = -(((e.clientY - r.top) / r.height) * 2 - 1);
+    };
+    const cartIsHit = () => {
+      raycaster.setFromCamera(pointer, camera);
+      return raycaster.intersectObject(cartChip, false).length > 0;
+    };
+
+    cv.addEventListener('pointermove', (e) => {
+      setPointer(e);
+      const hit = cartIsHit();
+      cv.style.cursor = hit ? 'pointer' : '';
+      setHighlight(() => (hoverCart = hit));
+      if (fineMq.matches && !reducedMq.matches) {
+        parT.x = THREE.MathUtils.clamp(pointer.x, -1, 1);
+        parT.y = THREE.MathUtils.clamp(-pointer.y, -1, 1);
+        requestTick();
+      }
+    });
+    cv.addEventListener('pointerleave', () => {
+      cv.style.cursor = '';
+      setHighlight(() => (hoverCart = false));
+      parT.x = parT.y = 0;
+      if (animating()) requestTick();
+    });
+    cv.addEventListener('click', (e) => {
+      setPointer(e);
+      if (cartIsHit()) setCart(!cartTarget);
+    });
+
+    reducedMq.addEventListener('change', () => {
+      if (reducedMq.matches) {
+        cartP = cartTarget;
+        par.x = par.y = parT.x = parT.y = 0;
+      }
+      refresh();
+    });
+    fineMq.addEventListener('change', () => {
+      if (!fineMq.matches) parT.x = parT.y = 0;
+      if (animating()) requestTick();
+    });
+
+    // ── sizing / camera fit ─────────────────────────────────────────────
+    // Fit the camera to the projected bounds of EVERY object across the whole
+    // motion envelope: drawer open + closed, and parallax at all four extremes.
+    // Nothing can clip at rest, mid-transition, or at the edge of pointer range.
+    const FIT_LIMIT = 0.95;
+    const viewDir = new THREE.Vector3(0, 0.12, 1).normalize();
+    const box = new THREE.Box3();
+    const collectFitPoints = () => {
+      const pts: import('three').Vector3[] = [];
+      const poses: [number, number][] = [[0, 0], [1, 1], [1, -1], [-1, 1], [-1, -1]];
+      for (const [px, py] of poses) {
+        for (const p of [0, 1]) {
+          layout(px, py, p, true);
+          world.updateMatrixWorld(true);
+          for (const obj of [laptop, cup, greeting, cartDrawer, ...chips]) {
+            box.setFromObject(obj);
+            for (const x of [box.min.x, box.max.x])
+              for (const y of [box.min.y, box.max.y])
+                for (const z of [box.min.z, box.max.z]) pts.push(new THREE.Vector3(x, y, z));
+          }
+        }
+      }
+      syncLayout();
+      world.updateMatrixWorld(true);
+      return pts;
+    };
+    const placeCamera = (target: import('three').Vector3, dist: number) => {
+      camera.position.copy(target).addScaledVector(viewDir, dist);
+      camera.lookAt(target);
+      camera.updateMatrixWorld();
+      camera.updateProjectionMatrix();
+    };
+    const projectedBounds = (pts: import('three').Vector3[]) => {
+      let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+      const v = new THREE.Vector3();
+      for (const p of pts) {
+        v.copy(p).project(camera);
+        minX = Math.min(minX, v.x); maxX = Math.max(maxX, v.x);
+        minY = Math.min(minY, v.y); maxY = Math.max(maxY, v.y);
+      }
+      return { minX, maxX, minY, maxY };
+    };
+    const fitCamera = () => {
+      const pts = collectFitPoints();
+      const target = new THREE.Vector3();
+      pts.forEach((p) => target.add(p));
+      target.divideScalar(pts.length);
+      const right = new THREE.Vector3();
+      const up = new THREE.Vector3();
+      for (let pass = 0; pass < 4; pass++) {
+        let lo = 2, hi = 60;
+        for (let i = 0; i < 30; i++) {
+          const mid = (lo + hi) / 2;
+          placeCamera(target, mid);
+          const b = projectedBounds(pts);
+          if (b.maxX - b.minX <= FIT_LIMIT * 2 && b.maxY - b.minY <= FIT_LIMIT * 2) hi = mid;
+          else lo = mid;
+        }
+        placeCamera(target, hi);
+        const b = projectedBounds(pts);
+        const halfH = hi * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
+        right.setFromMatrixColumn(camera.matrixWorld, 0);
+        up.setFromMatrixColumn(camera.matrixWorld, 1);
+        target
+          .addScaledVector(right, ((b.minX + b.maxX) / 2) * halfH * camera.aspect)
+          .addScaledVector(up, ((b.minY + b.maxY) / 2) * halfH);
+      }
+      let lo = 2, hi = 60;
+      for (let i = 0; i < 30; i++) {
+        const mid = (lo + hi) / 2;
+        placeCamera(target, mid);
+        const b = projectedBounds(pts);
+        const fits = Math.max(Math.abs(b.minX), Math.abs(b.maxX), Math.abs(b.minY), Math.abs(b.maxY)) <= FIT_LIMIT;
+        if (fits) hi = mid;
+        else lo = mid;
+      }
+      placeCamera(target, hi);
+    };
+
+    const fit = () => {
+      const w = cv.clientWidth || 1;
+      const h = cv.clientHeight || 1;
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h;
+      greeting.scale.setScalar(w < 520 ? 0.8 : 1);
+      fitCamera();
+      renderOnce();
+    };
+    const ro = new ResizeObserver(fit);
+    ro.observe(container);
+    fit();
+
+    // ── theme sync ──────────────────────────────────────────────────────
+    const mo = new MutationObserver(() => {
+      C = readColors();
+      applyThemeLighting();
+      themed.forEach(({ mat, get }) => mat.color.set(get()));
+      (cupMat as { emissive: { set(v: string): void } }).emissive.set(C.accent);
+      regens.forEach((fn) => fn());
+      renderOnce();
+    });
+    mo.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
+    // Canvas textures are painted once; repaint after web fonts resolve so the
+    // greeting and UI text use (and are measured with) the real typefaces.
+    document.fonts?.ready.then(() => {
+      regens.forEach((fn) => fn());
+      renderOnce();
+    });
+
+    return {
+      play() {
+        active = true;
+        renderOnce();
+        if (animating()) requestTick();
+      },
+      pause() {
+        active = false;
+        if (raf) cancelAnimationFrame(raf);
+        raf = 0;
+        last = 0;
+      },
+    };
+  }
+</script>

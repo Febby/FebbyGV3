@@ -85,9 +85,15 @@ const personSchema = {
         } catch (e) {}
       })();
     </script>
+
+    <!-- No-JS fallback: scroll-reveal elements must remain visible -->
+    <noscript>
+      <style>
+        .reveal { opacity: 1; transform: none; }
+      </style>
+    </noscript>
   </head>
   <body class="flex flex-col min-h-screen">
-<<<<<<< Updated upstream
     <header id="site-header" class="site-header">
       <nav class="site-nav">
         <!-- Left spacer (balances toggle on right) -->
@@ -100,15 +106,6 @@ const personSchema = {
           <li><a href="/#work" class="nav-link">Work</a></li>
           <li><a href="/#blog" class="nav-link">Blog</a></li>
           <li><a href="/#contact" class="nav-link nav-link--cta">Contact</a></li>
-=======
-    <header class="sticky top-0 z-10 bg-white/70 backdrop-blur shadow-sm">
-      <nav class="max-w-6xl mx-auto flex items-center justify-between p-4">
-        <a href="/" class="text-xl font-semibold">Febby Gunawan</a>
-        <ul class="flex space-x-6 text-sm">
-          <li><a href="#about" class="hover:text-blue-600">About</a></li>
-          <li><a href="#projects" class="hover:text-blue-600">Projects</a></li>
-          <li><a href="#contact" class="hover:text-blue-600">Contact</a></li>
->>>>>>> Stashed changes
         </ul>
 
         <!-- Right: theme toggle + mobile menu -->

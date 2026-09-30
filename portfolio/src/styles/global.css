@@ -124,6 +124,13 @@ h1, h2, h3, h4 {
   background-color: var(--color-surface);
 }
 
+/* Hero-only tag variant — supporting metadata, not a primary element */
+.hero-tag {
+  background-color: transparent;
+  border-color: color-mix(in srgb, var(--color-border) 65%, transparent);
+  opacity: 0.85;
+}
+
 /* ── Navigation ── */
 .site-header {
   position: fixed;
@@ -324,6 +331,126 @@ h1, h2, h3, h4 {
 /* Offset page content so it starts below the fixed nav */
 body > main {
   padding-top: 3.75rem;
+}
+
+/* ── Hero 3D scene ── */
+.hero-scene {
+  position: relative;
+  width: 100%;
+  height: 19.5rem;
+}
+
+.hero-scene .hero-scene-fallback,
+.hero-scene canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* The SVG fallback is purely decorative: no pointer or selection affordance. */
+.hero-scene .hero-scene-fallback {
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Themed panels shared by the static SVG fallback (mirrors the 3D chips). */
+.hs-panel {
+  fill: #ffffff;
+  stroke: #7b8aa3;
+}
+
+.dark .hs-panel {
+  fill: #1e293b;
+  stroke: rgba(148, 163, 184, 0.5);
+}
+
+/* Once the canvas exists, reserve a strip below it for the hint button. */
+.hero-scene.has-canvas canvas {
+  bottom: 2.5rem;
+  height: calc(100% - 2.5rem);
+}
+
+.hero-scene.has-canvas .hero-scene-fallback {
+  bottom: 2.5rem;
+  height: calc(100% - 2.5rem);
+}
+
+.hero-scene-toggle {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  display: none;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  color: var(--color-muted);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.hero-scene.is-live .hero-scene-toggle {
+  display: inline-flex;
+}
+
+.hero-scene-toggle:hover,
+.hero-scene-toggle[aria-expanded='true'] {
+  color: var(--color-accent);
+  border-color: color-mix(in srgb, var(--color-accent) 55%, transparent);
+  background-color: color-mix(in srgb, var(--color-accent) 8%, transparent);
+}
+
+.hero-scene-toggle:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.hero-scene-glow {
+  position: absolute;
+  inset: -12% -10%;
+  pointer-events: none;
+  background: radial-gradient(
+    62% 56% at 52% 44%,
+    color-mix(in srgb, var(--color-accent) 21%, transparent),
+    transparent 74%
+  );
+}
+
+.dark .hero-scene-glow {
+  background: radial-gradient(
+    58% 52% at 52% 44%,
+    color-mix(in srgb, var(--color-accent) 18%, transparent),
+    transparent 72%
+  );
+}
+
+.hero-scene.is-live .hero-scene-fallback {
+  display: none;
+}
+
+.hero-scene canvas {
+  display: block;
+  touch-action: manipulation;
+}
+
+@media (min-width: 640px) {
+  .hero-scene {
+    height: 29.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-scene {
+    height: 30.5rem;
+  }
 }
 
 /* ── Scroll-reveal animation ── */
