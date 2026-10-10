@@ -2,6 +2,13 @@ const recipient = 'me@febbygunawan.com';
 const emailPattern = /^[^\s<>@,;]+@[^\s<>@,;]+\.[^\s<>@,;]+$/;
 const limits = { name: 100, email: 254, storeUrl: 2048, description: 5000 };
 
+function isSenderAddress(value) {
+  if (typeof value !== 'string' || !value.trim()) return false;
+  if (emailPattern.test(value)) return true;
+  const match = /^([^<>"\r\n]+?)\s*<([^<>\s]+)>$/.exec(value);
+  return !!match && emailPattern.test(match[2]);
+}
+
 export function validateInquiry(body) {
   const errors = {};
   const values = {};
@@ -46,7 +53,7 @@ export function createInquiryHandler({ env = process.env, fetchImpl = globalThis
     if (body.website !== undefined && body.website !== '') return reply(400, 'The inquiry could not be accepted. Please email me instead.');
     const { errors, values } = validateInquiry(body);
     if (Object.keys(errors).length) return reply(422, 'Please correct the marked fields.', { errors });
-    if (!env.POSTMARK_SERVER_TOKEN || !env.POSTMARK_FROM_EMAIL || !emailPattern.test(env.POSTMARK_FROM_EMAIL) || !env.TURNSTILE_SECRET_KEY) {
+    if (!env.RESEND_API_KEY || !isSenderAddress(env.INQUIRY_FROM_EMAIL) || !env.TURNSTILE_SECRET_KEY) {
       return reply(503, 'The inquiry form is not configured yet. Please email me@febbygunawan.com.');
     }
     if (typeof body.token !== 'string' || !body.token || body.token.length > 2048) return reply(422, 'Please complete spam verification and try again.');
@@ -67,27 +74,24 @@ export function createInquiryHandler({ env = process.env, fetchImpl = globalThis
     }
 
     try {
-      const delivery = await fetchImpl('https://api.postmarkapp.com/email', {
+      const delivery = await fetchImpl('https://api.resend.com/emails', {
         method: 'POST',
         headers: {
+          Authorization: `Bearer ${env.RESEND_API_KEY}`,
           'Content-Type': 'application/json',
           Accept: 'application/json',
-          'X-Postmark-Server-Token': env.POSTMARK_SERVER_TOKEN,
         },
         body: JSON.stringify({
-          From: env.POSTMARK_FROM_EMAIL,
-          To: recipient,
-          ReplyTo: values.email,
-          Subject: 'Portfolio inquiry',
-          TextBody: `Name: ${values.name}\nEmail: ${values.email}\nStore URL: ${values.storeUrl || '(not provided)'}\n\nIssue or project description:\n${values.description}`,
-          MessageStream: env.POSTMARK_MESSAGE_STREAM || 'outbound',
-          TrackOpens: false,
-          TrackLinks: 'None',
+          from: env.INQUIRY_FROM_EMAIL,
+          to: [recipient],
+          reply_to: values.email,
+          subject: 'Portfolio inquiry',
+          text: `Name: ${values.name}\nEmail: ${values.email}\nStore URL: ${values.storeUrl || '(not provided)'}\n\nIssue or project description:\n${values.description}`,
         }),
         signal: AbortSignal.timeout(12000),
       });
       const result = await delivery.json();
-      if (!delivery.ok || result.ErrorCode !== 0 || typeof result.MessageID !== 'string' || !result.MessageID) {
+      if (!delivery.ok || typeof result.id !== 'string' || !result.id) {
         return reply(502, 'Email delivery was not accepted. Your entries are preserved; please try again or email me.');
       }
       return reply(200, 'Your inquiry was accepted for email delivery.');
