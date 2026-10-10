@@ -1,6 +1,8 @@
 ---
 // Base layout component that wraps every page.
 import '../styles/global.css';
+import interLatin400 from '@fontsource/inter/files/inter-latin-400-normal.woff2?url';
+import spaceGroteskLatin700 from '@fontsource/space-grotesk/files/space-grotesk-latin-700-normal.woff2?url';
 
 interface Props {
   title?: string;
@@ -45,6 +47,8 @@ const personSchema = {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{pageTitle}</title>
+    <link rel="preload" href={interLatin400} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={spaceGroteskLatin700} as="font" type="font/woff2" crossorigin />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL.toString()} />
     <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
