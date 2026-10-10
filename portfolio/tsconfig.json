@@ -5,7 +5,6 @@
     "**/*"
   ],
   "exclude": [
-    "dist",
-    "dist-root"
+    "dist"
   ]
 }

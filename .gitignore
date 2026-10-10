@@ -1,6 +1,4 @@
-package-lock.json
 node_modules
-portfolio/.astro/settings.json
 
 # Local Netlify folder
 .netlify

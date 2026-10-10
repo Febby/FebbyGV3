@@ -1,10 +1,9 @@
 // Astro configuration for Febby Gunawan's portfolio site.
-// This config enables Tailwind CSS via the official integration.
+// Tailwind CSS runs through PostCSS (see postcss.config.mjs).
 import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://febbygunawan.com',
-  integrations: [tailwind(), sitemap()],
+  integrations: [sitemap()],
 });
