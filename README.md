@@ -32,12 +32,8 @@ npm run astro -- --help
 ## Deployment
 
 The portfolio is configured for `site: 'https://febbygunawan.com'` in `portfolio/astro.config.mjs`.
-Since these are static Astro builds, you can deploy the `dist/` folder pretty much anywhere:
-
-- **Vercel** or **Netlify** — easiest if you want git push deploys and preview branches
-- **Cloudflare Pages** — good if you want CDN + custom domain
-- **GitHub Pages** — free and simple enough for a personal site
-- **Any static host** — just upload the contents of `dist/`
+It's deployed on **Vercel** (settings in `portfolio/vercel.json`): every push to `main` deploys to production, and every pull request gets a preview deployment.
+Vercel runs `npm ci` against the committed `package-lock.json`, then `npm run build`, and serves `dist/`.
 
 ## SEO & discoverability
 
