@@ -5,5 +5,8 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://febbygunawan.com',
+  // Astro 7 defaults to JSX whitespace rules, which drop spaces between
+  // elements on separate lines. Keep the lossless Astro 6 behaviour.
+  compressHTML: true,
   integrations: [sitemap()],
 });
