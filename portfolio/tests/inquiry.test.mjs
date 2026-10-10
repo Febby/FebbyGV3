@@ -3,10 +3,10 @@ import assert from 'node:assert/strict';
 import { createInquiryHandler, validateInquiry } from '../lib/inquiry.mjs';
 
 const body = { name: 'Preview Test', email: 'test@example.com', storeUrl: '', description: 'TEST INQUIRY — no client work requested.', website: '', token: 'test-token' };
-const env = { POSTMARK_SERVER_TOKEN: 'fake-token', POSTMARK_FROM_EMAIL: 'sender@example.com', TURNSTILE_SECRET_KEY: 'fake-secret' };
+const env = { RESEND_API_KEY: 'fake-key', INQUIRY_FROM_EMAIL: 'Febby Gunawan <sender@example.com>', TURNSTILE_SECRET_KEY: 'fake-secret' };
 const origin = 'https://febbygunawan.com';
 const verification = { success: true, action: 'inquiry', hostname: 'febbygunawan.com' };
-const accepted = { ErrorCode: 0, MessageID: 'test-id' };
+const accepted = { id: 'test-id' };
 
 async function invoke({ data = body, headers = {}, method = 'POST', config = env, responses = [verification, accepted], failAt } = {}) {
   const calls = [];
@@ -20,17 +20,24 @@ async function invoke({ data = body, headers = {}, method = 'POST', config = env
   return { response, calls };
 }
 
-test('accepts only after verification and Postmark acceptance; fixed recipient and safe reply-to', async () => {
+test('accepts only after verification and Resend acceptance; fixed recipient and safe reply-to', async () => {
   const { response, calls } = await invoke();
   assert.equal(response.code, 200);
   assert.equal(response.body.ok, true);
   assert.equal(response.headers['Cache-Control'], 'no-store');
+  assert.equal(calls[1].url, 'https://api.resend.com/emails');
+  assert.equal(calls[1].options.headers.Authorization, 'Bearer fake-key');
   const email = JSON.parse(calls[1].options.body);
-  assert.equal(email.To, 'me@febbygunawan.com');
-  assert.equal(email.ReplyTo, body.email);
-  assert.equal(email.From, env.POSTMARK_FROM_EMAIL);
-  assert.equal(email.TrackOpens, false);
-  assert.equal(email.HtmlBody, undefined);
+  assert.equal(email.from, env.INQUIRY_FROM_EMAIL);
+  assert.deepEqual(email.to, ['me@febbygunawan.com']);
+  assert.equal(email.reply_to, body.email);
+  assert.equal('html' in email, false);
+  assert.ok(email.text.includes(body.description));
+});
+
+test('accepts a bare sender address for INQUIRY_FROM_EMAIL', async () => {
+  const { response } = await invoke({ config: { ...env, INQUIRY_FROM_EMAIL: 'sender@example.com' } });
+  assert.equal(response.code, 200);
 });
 
 test('validates required fields, types, lengths, header injection, and optional HTTP store URLs', () => {
@@ -51,6 +58,8 @@ test('rejects invalid requests before calling external providers', async () => {
     [{ data: { ...body, website: 'spam' } }, 400], [{ data: { ...body, name: '' } }, 422],
     [{ data: { ...body, description: 'a'.repeat(33000) } }, 413],
     [{ data: { ...body, token: '' } }, 422], [{ config: {} }, 503],
+    [{ config: { ...env, INQUIRY_FROM_EMAIL: 'not-an-email' } }, 503],
+    [{ config: { ...env, INQUIRY_FROM_EMAIL: 'Bad <x@y.com>\r\nBcc: z@y.com' } }, 503],
   ]) {
     const { response, calls } = await invoke(options);
     assert.equal(response.code, code);
@@ -74,8 +83,8 @@ test('accepts explicitly configured preview origins without trusting arbitrary h
   assert.equal(response.code, 200);
 });
 
-test('does not claim success or retry when Postmark rejects or times out', async () => {
-  for (const options of [{ responses: [verification, { ErrorCode: 422, Message: 'Invalid sender' }] }, { responses: [verification, { ErrorCode: 0 }] }, { failAt: 2 }]) {
+test('does not claim success or retry when Resend rejects or times out', async () => {
+  for (const options of [{ responses: [verification, { statusCode: 422, name: 'validation_error', message: 'Invalid sender' }] }, { responses: [verification, {}] }, { failAt: 2 }]) {
     const { response, calls } = await invoke(options);
     assert.equal(response.code, 502);
     assert.equal(response.body.ok, false);
