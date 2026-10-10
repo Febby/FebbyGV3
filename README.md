@@ -4,12 +4,12 @@ My personal portfolio site, live at [febbygunawan.com](https://febbygunawan.com)
 
 ## What's in here
 
-- `portfolio/` — the main site at [febbygunawan.com](https://febbygunawan.com). Uses Astro 6 + Tailwind 3, with a custom light/dark toggle, CSS variables, and self-hosted Inter / Space Grotesk fonts.
+- `portfolio/` — the main site at [febbygunawan.com](https://febbygunawan.com). Uses Astro 7 + Tailwind 4, with a custom light/dark toggle, CSS variables, and self-hosted Inter / Space Grotesk fonts.
 
 ## Tech stack
 
 - **Astro** for the static site foundation
-- **Tailwind CSS** v3 for styling
+- **Tailwind CSS** v4 for styling (configured in `src/styles/global.css` via `@theme`)
 - **Fontsource** for self-hosted Inter + Space Grotesk
 - **npm** as the package manager
 

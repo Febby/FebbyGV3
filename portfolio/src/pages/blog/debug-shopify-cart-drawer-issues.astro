@@ -15,7 +15,7 @@ const post = {
     The cart drawer is one of the most important pieces of a Shopify storefront. When it stops opening, customers lose feedback after clicking “Add to cart,” which often leads to duplicate products and abandoned checkouts. This article walks through a practical debugging process that can be applied to almost any cart drawer issue.
   </p>
 
-  <h2 class="text-2xl font-bold mt-8 mb-3 text-theme">Common causes</h2>
+  <h2 class="text-2xl font-bold text-theme">Common causes</h2>
   <ul class="list-disc pl-6 space-y-2 text-muted">
     <li>Third-party apps overriding the theme’s cart drawer listener.</li>
     <li>Asynchronous app embeds that load after the theme JavaScript has initialized.</li>
@@ -23,7 +23,7 @@ const post = {
     <li>AJAX cart updates that return errors but are not handled gracefully.</li>
   </ul>
 
-  <h2 class="text-2xl font-bold mt-8 mb-3 text-theme">A repeatable debugging flow</h2>
+  <h2 class="text-2xl font-bold text-theme">A repeatable debugging flow</h2>
   <ol class="list-decimal pl-6 space-y-3 text-muted">
     <li>
       <strong class="text-theme">Reproduce the issue</strong> on both mobile and desktop. Confirm whether the drawer fails on the first add-to-cart, after a variant change, or only when a specific app is active.
@@ -42,7 +42,7 @@ const post = {
     </li>
   </ol>
 
-  <h2 class="text-2xl font-bold mt-8 mb-3 text-theme">Quick checklist</h2>
+  <h2 class="text-2xl font-bold text-theme">Quick checklist</h2>
   <ul class="list-disc pl-6 space-y-2 text-muted">
     <li>Check the cart drawer works on a fresh theme preview.</li>
     <li>Verify no console errors after adding to cart.</li>
