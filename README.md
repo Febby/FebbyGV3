@@ -4,13 +4,13 @@ My personal portfolio site, live at [febbygunawan.com](https://febbygunawan.com)
 
 ## What's in here
 
-- `portfolio/` — the main site at [febbygunawan.com](https://febbygunawan.com). Uses Astro 6 + Tailwind 3, with a custom light/dark toggle, CSS variables, and Inter / Space Grotesk from Google Fonts.
+- `portfolio/` — the main site at [febbygunawan.com](https://febbygunawan.com). Uses Astro 6 + Tailwind 3, with a custom light/dark toggle, CSS variables, and self-hosted Inter / Space Grotesk fonts.
 
 ## Tech stack
 
 - **Astro** for the static site foundation
 - **Tailwind CSS** v3 for styling
-- **Google Fonts** (Inter + Space Grotesk)
+- **Fontsource** for self-hosted Inter + Space Grotesk
 - **npm** as the package manager
 
 ## Running it
@@ -26,6 +26,7 @@ Other useful commands:
 ```bash
 npm run build    # build to ./dist/
 npm run preview  # preview the build
+npm run check    # type-check .astro and TS files
 npm run astro -- --help
 ```
 
@@ -33,7 +34,9 @@ npm run astro -- --help
 
 The portfolio is configured for `site: 'https://febbygunawan.com'` in `portfolio/astro.config.mjs`.
 It's deployed on **Vercel** (settings in `portfolio/vercel.json`): every push to `main` deploys to production, and every pull request gets a preview deployment.
-Vercel runs `npm ci` against the committed `package-lock.json`, then `npm run build`, and serves `dist/`.
+Vercel runs `npm ci` against the committed `package-lock.json`, then `npm run build`, and serves `dist/`. Security and caching headers are set in `vercel.json`.
+
+GitHub Actions (`.github/workflows/ci.yml`) runs `npm ci`, `npm run check` and `npm run build` on every push to `main` and on every pull request.
 
 ## SEO & discoverability
 

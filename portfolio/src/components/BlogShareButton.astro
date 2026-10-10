@@ -44,8 +44,10 @@
         if (navigator.share) {
           navigator.share({ title: title, text: text, url: url })
             .catch(function (err) {
+              // The user closed the share sheet — not an error.
+              if (err && err.name === 'AbortError') return;
               console.error('[share] Web Share API failed:', err);
-              setLabel('Copy failed');
+              setLabel('Share failed');
               resetAfter(2000);
             });
           return;
