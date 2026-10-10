@@ -15,6 +15,7 @@ import { services } from '../data/content.js';
           <div class="text-4xl mb-5">{service.icon}</div>
           <h3 class="text-base font-semibold text-theme mb-2">{service.title}</h3>
           <p class="text-muted text-sm leading-relaxed">{service.description}</p>
+          {service.href && <a href={service.href} class="inline-block mt-5 text-sm font-semibold text-accent underline underline-offset-4">Get Shopify troubleshooting help →</a>}
         </div>
       ))}
     </div>

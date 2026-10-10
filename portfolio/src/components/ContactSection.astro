@@ -1,5 +1,5 @@
 ---
-// Contact CTA section — email, GitHub, and LinkedIn links.
+import InquiryForm from './InquiryForm.astro';
 ---
 <section id="contact" class="py-24 px-4" style="background-color: var(--color-surface); border-top: 1px solid var(--color-border);">
   <div class="max-w-2xl mx-auto text-center">
@@ -11,10 +11,8 @@
       Whether it is a cart drawer conflict, app integration issue, or a website project,
       I can help investigate the problem and explain the solution clearly.
     </p>
-    <div class="reveal flex flex-wrap justify-center gap-4" style="--reveal-delay: 240ms">
-      <a href="mailto:me@febbygunawan.com" class="btn-primary">
-        Email Me
-      </a>
+    <InquiryForm id="home-inquiry" />
+    <div class="flex flex-wrap justify-center gap-4 mt-8">
       <a
         href="https://github.com/Febby"
         target="_blank"

@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import InquiryForm from '../../components/InquiryForm.astro';
+import { shopifyProblems } from '../../data/content.js';
+
+const issues = [
+  ['Storefront JavaScript errors', 'Errors, conflicting event handlers, or scripts that interrupt product and cart interactions.'],
+  ['Cart drawer conflicts', 'Drawers that freeze or fail to update, gift and upsell interactions, and cart counts that fall out of sync.'],
+  ['Theme and app integration issues', 'Front-end conflicts between custom theme code and third-party apps, including timing and dynamically rendered content.'],
+  ['Liquid, JavaScript, and CSS customizations', 'Scoped storefront changes to product controls, app interfaces, and responsive layouts within the theme or integration’s limits.'],
+];
+const process = [
+  ['Send an inquiry', 'Describe the issue or change, what you expected, and what actually happens. A store URL and reproduction steps help.'],
+  ['Agree the scope', 'We clarify the goal, access needed, limitations, deliverables, and price before work starts.'],
+  ['Investigate or implement', 'I investigate within the diagnostic scope or implement the approved change. Anything outside that scope is discussed separately.'],
+  ['Receive a handover', 'You get concise findings or a summary of the change, validation performed, known limitations, and next steps.'],
+];
+---
+<BaseLayout
+  title="Shopify Troubleshooting & Storefront Fixes"
+  description="Independent Shopify storefront help for JavaScript errors, cart drawer conflicts, theme and app integrations, and scoped Liquid, JavaScript, and CSS changes."
+>
+  <section class="py-16 md:py-24 px-4 bg-page">
+    <div class="max-w-3xl mx-auto text-center">
+      <a href="/" class="inline-block text-sm text-accent underline underline-offset-4 mb-8">← Back to portfolio</a>
+      <span class="section-label">Independent freelance Shopify help</span>
+      <h1 class="text-4xl md:text-5xl font-bold text-theme leading-tight mb-6">A storefront issue shouldn’t leave you guessing.</h1>
+      <p class="text-lg md:text-xl text-muted leading-relaxed mb-6">I help Shopify merchants and agencies investigate JavaScript errors, cart drawer conflicts, and theme–app integration issues, and implement scoped front-end changes.</p>
+      <p class="text-muted leading-relaxed mb-8">Start with the problem you’re seeing. We’ll agree whether a diagnostic or an implementation is the right next step, with scope and pricing confirmed after reviewing your inquiry.</p>
+      <a href="#inquiry" class="btn-primary">Tell me about your Shopify issue</a>
+      <p class="text-sm text-muted mt-5">This is independent freelance work, not official Shopify support or support bundled with any app vendor.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="issues-heading" class="py-16 px-4 bg-surface">
+    <div class="max-w-5xl mx-auto">
+      <h2 id="issues-heading" class="text-3xl font-bold text-center mb-8">Common issues I handle</h2>
+      <div class="grid md:grid-cols-2 gap-5">
+        {issues.map(([title, description]) => <div class="card"><h3 class="text-lg font-semibold mb-3">{title}</h3><p class="text-muted leading-relaxed">{description}</p></div>)}
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="engagement-heading" class="py-16 px-4 bg-page">
+    <div class="max-w-5xl mx-auto">
+      <h2 id="engagement-heading" class="text-3xl font-bold text-center mb-8">Two ways to work together</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="card">
+          <h3 class="text-xl font-semibold mb-4">Scoped diagnostic</h3>
+          <p class="text-muted mb-4">For an issue that needs investigation before a fix can be defined.</p>
+          <ul class="list-disc pl-5 space-y-3 text-muted leading-relaxed">
+            <li>Review the issue and your reproduction steps.</li>
+            <li>Investigate within an agreed scope.</li>
+            <li>Provide findings, limitations, and recommended next steps.</li>
+            <li>Quote implementation separately when appropriate.</li>
+          </ul>
+          <p class="text-sm text-muted mt-6">An investigation does not guarantee that the cause will be identified or that the issue can be fixed.</p>
+        </div>
+        <div class="card">
+          <h3 class="text-xl font-semibold mb-4">Implementation</h3>
+          <p class="text-muted mb-4">For a change we can define and agree before work starts.</p>
+          <ul class="list-disc pl-5 space-y-3 text-muted leading-relaxed">
+            <li>Agree the scope and price before starting.</li>
+            <li>Implement the approved change.</li>
+            <li>Validate the relevant storefront behavior.</li>
+            <li>Provide a concise handover covering the change and any known limitations.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="text-center text-muted mt-6">Scope and pricing are confirmed after I review your inquiry. Sending an inquiry does not commit you to paid work.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="process-heading" class="py-16 px-4 bg-surface">
+    <div class="max-w-5xl mx-auto">
+      <h2 id="process-heading" class="text-3xl font-bold text-center mb-8">From inquiry to handover</h2>
+      <ol class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {process.map(([title, description], i) => <li><span class="section-label text-left">Step {i + 1}</span><h3 class="text-lg font-semibold mb-3">{title}</h3><p class="text-muted leading-relaxed">{description}</p></li>)}
+      </ol>
+    </div>
+  </section>
+
+  <section aria-labelledby="examples-heading" class="py-16 px-4 bg-page">
+    <div class="max-w-5xl mx-auto">
+      <h2 id="examples-heading" class="text-3xl font-bold text-center mb-4">Related Shopify case studies</h2>
+      <p class="text-center text-muted mb-8">Read the existing problem, investigation, solution, and result for each example.</p>
+      <ul class="grid md:grid-cols-3 gap-5">
+        {shopifyProblems.map((item) => <li class="card"><a class="text-accent font-semibold underline underline-offset-4" href={`/#${item.id}`}>{item.title}</a></li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section aria-labelledby="faq-heading" class="py-16 px-4 bg-surface">
+    <div class="max-w-3xl mx-auto">
+      <h2 id="faq-heading" class="text-3xl font-bold text-center mb-8">Before you inquire</h2>
+      <div class="space-y-4">
+        <details class="card"><summary class="font-semibold cursor-pointer">What should I include?</summary><p class="text-muted leading-relaxed mt-4">Explain what happens, what you expected, and how to reproduce it. Include the store URL, relevant theme or app names, and any recent changes if you know them. Do not send passwords, access tokens, or customer data.</p></details>
+        <details class="card"><summary class="font-semibold cursor-pointer">Can you work with an agency?</summary><p class="text-muted leading-relaxed mt-4">Yes. Describe the merchant’s issue and your team’s role, and we can agree responsibilities, scope, and handover needs before starting.</p></details>
+        <details class="card"><summary class="font-semibold cursor-pointer">Will a diagnostic always lead to a fix?</summary><p class="text-muted leading-relaxed mt-4">No. Some issues cannot be reproduced or depend on code controlled by a theme or app vendor. The diagnostic deliverable is the findings, limitations, and recommended next steps within the agreed scope—not a guaranteed fix.</p></details>
+        <details class="card"><summary class="font-semibold cursor-pointer">How much will it cost, and when can work start?</summary><p class="text-muted leading-relaxed mt-4">Pricing, scope, and scheduling are discussed after reviewing the inquiry. There is no fixed price or promised turnaround on this page.</p></details>
+        <details class="card"><summary class="font-semibold cursor-pointer">Do you need access to my store?</summary><p class="text-muted leading-relaxed mt-4">A public URL and reproduction steps are a useful starting point. If access is needed, we’ll agree appropriate permissions and a secure way to grant them separately. Do not send credentials through this form.</p></details>
+        <details class="card"><summary class="font-semibold cursor-pointer">Is this Shopify or app-vendor support?</summary><p class="text-muted leading-relaxed mt-4">No. This is a separate, independent freelance engagement. Your theme or app vendor may need to handle issues in code they control; I’ll explain those limitations in the findings.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section id="inquiry" aria-labelledby="inquiry-heading" class="py-16 px-4 bg-page scroll-mt-24">
+    <div class="max-w-2xl mx-auto">
+      <h2 id="inquiry-heading" class="text-3xl font-bold text-center mb-4">Tell me what’s happening</h2>
+      <p class="text-muted text-center leading-relaxed mb-8">Share the issue or change you have in mind so I can review it and discuss a suitable scope.</p>
+      <InquiryForm id="service-inquiry" />
+    </div>
+  </section>
+</BaseLayout>

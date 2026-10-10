@@ -74,6 +74,13 @@ h1, h2, h3, h4 {
   font-family: 'Space Grotesk', system-ui, sans-serif;
 }
 
+:where(a, button, input, textarea, summary):focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+.dark .btn-primary { color: var(--color-bg); }
+
 /* ── Utility classes using CSS variables ── */
 .bg-surface    { background-color: var(--color-surface); }
 .bg-page       { background-color: var(--color-bg); }

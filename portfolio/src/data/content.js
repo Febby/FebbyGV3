@@ -1,6 +1,7 @@
 export const services = [
   {
     title: 'Shopify Troubleshooting',
+    href: '/services/shopify-troubleshooting/',
     description:
       'Diagnosing and fixing cart drawer conflicts, app integration issues, theme bugs, and storefront JavaScript errors.',
     icon: '🛒',
@@ -40,6 +41,7 @@ export const services = [
 export const shopifyProblems = [
   {
     title: 'Cart Froze When Removing a Free Gift',
+    id: 'cart-free-gift',
     problem:
       'A Shopify storefront became unresponsive when customers removed an automatically added free gift from the cart.',
     investigation:
@@ -52,6 +54,7 @@ export const shopifyProblems = [
   },
   {
     title: 'Hiding Sold-Out Variants Before Native Support Existed',
+    id: 'sold-out-variants',
     problem:
       'The inventory-management app could hide an entire product when all variants were sold out, but it did not yet support hiding individual unavailable variants on the product page.',
     investigation:
@@ -64,6 +67,7 @@ export const shopifyProblems = [
   },
   {
     title: 'Adding a View Product Action Inside an Upsell Detail View',
+    id: 'upsell-product-link',
     problem:
       'A merchant wanted customers to inspect an upsell product in its original storefront context before deciding whether to add it. The upsell detail view was rendered inside an iframe without the merchant\'s normal product-page layout or navigation.',
     investigation:

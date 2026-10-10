@@ -24,6 +24,7 @@ const siteUrl = Astro.site?.toString() || 'https://febbygunawan.com';
 const canonicalURL = new URL(Astro.url.pathname, siteUrl);
 const ogImageURL = new URL(image, siteUrl);
 const siteName = 'Febby Gunawan';
+const preventIndexing = noindex || import.meta.env.VERCEL_ENV === 'preview' || import.meta.env.SITE_NOINDEX === 'true';
 const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '/index.html';
 const pageTitle = isHome ? title : `${title} | ${siteName}`;
 
@@ -51,7 +52,7 @@ const personSchema = {
     <link rel="preload" href={spaceGroteskLatin700} as="font" type="font/woff2" crossorigin />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL.toString()} />
-    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+    <meta name="robots" content={preventIndexing ? 'noindex, nofollow' : 'index, follow'} />
 
     <!-- Favicon & theme -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
